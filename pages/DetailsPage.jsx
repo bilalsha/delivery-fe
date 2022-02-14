@@ -8,10 +8,10 @@ import {
 } from "react-native";
 import { useState } from "react";
 import ButtonContainer from "../Components/ButtonsContainer";
-import CustomButton from "../Components/CustomButton";
 import TripleButtonsContainer from "../Components/TripleButtonContainer";
 import PaymentWithButton from "../Components/PaymentWithButton";
-const DetailsPage = ({ navigation }) => {
+const DetailsPage = ({ route, navigation }) => {
+  const { title, price, image } = route.params;
   const [itemsCounter, setItemsCounter] = useState(1);
 
   const decreaseItemsCounter = () => {
@@ -28,46 +28,37 @@ const DetailsPage = ({ navigation }) => {
     navigation.navigate("Cart");
   };
   return (
-    <View style={styles.container}>
+    <View style={styles.mainContainer}>
       {/* coverImage */}
-      <View
-        style={{
-          flex: 3,
-          justifyContent: "space-between",
-          marginTop: 10,
-        }}
-      >
+      <View style={styles.innerContainer}>
         <View style={{ width: 335 }}>
-          <Image
-            source={require("../assets/images/detailsPage/details.png")}
-            style={styles.coverImage}
-          />
+          <Image source={image} style={styles.coverImage} />
         </View>
 
         {/* Heading+Counter */}
-        <View style={styles.counterContainer}>
+        <View style={styles.counterAndTextContainer}>
           <View style={{ width: 220 }}>
-            <Text style={styles.itemName}>Extra Beef burger with cheese</Text>
+            <Text style={styles.itemName}>{title}</Text>
           </View>
-          <View
-            style={{
-              width: 100,
-              height: 42,
-              backgroundColor: "#F2F2F2",
-              borderRadius: 12,
-              flexDirection: "row",
-              justifyContent: "space-evenly",
-              alignItems: "center",
-            }}
-          >
-            <TouchableOpacity onPress={decreaseItemsCounter}>
-              <Text style={styles.counterText}>-</Text>
+          <View style={styles.counterContainer}>
+            <TouchableOpacity
+              onPress={decreaseItemsCounter}
+              style={{ flex: 1 }}
+            >
+              <View>
+                <Text style={styles.counterText}>-</Text>
+              </View>
             </TouchableOpacity>
-            <View>
+            <View style={{ flex: 1 }}>
               <Text style={styles.counterText}>{itemsCounter}</Text>
             </View>
-            <TouchableOpacity onPress={increaseItemsCounter}>
-              <Text style={styles.counterText}>+</Text>
+            <TouchableOpacity
+              onPress={increaseItemsCounter}
+              style={{ flex: 1 }}
+            >
+              <View>
+                <Text style={styles.counterText}>+</Text>
+              </View>
             </TouchableOpacity>
           </View>
         </View>
@@ -97,19 +88,13 @@ const DetailsPage = ({ navigation }) => {
       </View>
 
       {/* Price + Button  */}
-      <View
-        style={{
-          flex: 1,
-          justifyContent: "flex-end",
-        }}
-      >
+      <View style={styles.paymentWithButtonContainer}>
         <PaymentWithButton
           title="Add to Cart"
-          price="$ 12.90"
+          price={price}
           onPressButton={onPressCartButton}
         />
       </View>
-      {/* <Button title="Cart Page" onPress={() => navigation.navigate("Cart")} /> */}
     </View>
   );
 };
@@ -117,23 +102,38 @@ const DetailsPage = ({ navigation }) => {
 export default DetailsPage;
 
 const styles = StyleSheet.create({
-  container: {
+  mainContainer: {
     flex: 1,
     alignItems: "center",
   },
+  innerContainer: {
+    flex: 3,
+    justifyContent: "space-between",
+    marginTop: 10,
+  },
   coverImage: {
     borderRadius: 15,
+    width: 335,
   },
   itemName: {
     fontFamily: "Poppins600",
     fontSize: 21,
     fontStyle: "normal",
   },
-  counterContainer: {
+  counterAndTextContainer: {
     flexDirection: "row",
     width: 335,
     alignItems: "center",
     justifyContent: "space-between",
+  },
+  counterContainer: {
+    width: 100,
+    height: 42,
+    backgroundColor: "#F2F2F2",
+    borderRadius: 12,
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    alignItems: "center",
   },
   optionText: {
     fontFamily: "Poppins600",
@@ -144,5 +144,9 @@ const styles = StyleSheet.create({
     fontSize: 18,
     textAlign: "center",
     color: "#828282",
+  },
+  paymentWithButtonContainer: {
+    flex: 1,
+    justifyContent: "flex-end",
   },
 });

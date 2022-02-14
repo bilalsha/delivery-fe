@@ -11,10 +11,12 @@ import {
 import { Fragment } from "react";
 import { MenuIconsData } from "../data/MenuIconsData";
 import { MenuListData } from "../data/MenuListData";
+import { useState } from "react";
 // import TabNavigator from "../routes/TabNavigator";
 const MenuPage = ({ navigation }) => {
-  const loadDetails = () => {
-    navigation.navigate("Details");
+  const [menuData, setMenuData] = useState(MenuListData);
+  const loadDetails = (item) => {
+    navigation.navigate("Details", item);
   };
   const renderIcon = ({ item }) => {
     return (
@@ -27,7 +29,10 @@ const MenuPage = ({ navigation }) => {
 
   const renderListData = ({ item }) => {
     return (
-      <TouchableOpacity style={styles.listWrapper} onPress={loadDetails}>
+      <TouchableOpacity
+        style={styles.listWrapper}
+        onPress={() => loadDetails(item)}
+      >
         <Image source={item.image} style={styles.listImage} />
         <Text style={styles.listTitle}>{item.title}</Text>
       </TouchableOpacity>
@@ -52,7 +57,7 @@ const MenuPage = ({ navigation }) => {
       <View style={styles.listContainer}>
         <FlatList
           keyExtractor={(item) => item.id}
-          data={MenuListData}
+          data={menuData}
           renderItem={renderListData}
         />
       </View>
@@ -82,8 +87,21 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
 
-  listContainer: {},
-  listWrapper: {},
-  listImage: {},
-  listTitle: {},
+  listContainer: {
+    flex: 1,
+    alignItems: "center",
+  },
+  listWrapper: {
+    // width: 194,
+  },
+  listImage: {
+    width: 194,
+    height: 177,
+    borderRadius: 12,
+  },
+  listTitle: {
+    fontFamily: "Poppins600",
+    fontSize: 12,
+    textAlign: "center",
+  },
 });
