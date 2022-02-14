@@ -2,19 +2,18 @@ import {
   StyleSheet,
   Text,
   View,
-  Button,
-  ScrollView,
   FlatList,
   TouchableOpacity,
   Image,
 } from "react-native";
-import { Fragment } from "react";
+
 import { MenuIconsData } from "../data/MenuIconsData";
-import { MenuListData } from "../data/MenuListData";
-import { useState } from "react";
+import { useContext } from "react";
+import { Context } from "../store/App-Context";
+
 // import TabNavigator from "../routes/TabNavigator";
 const MenuPage = ({ navigation }) => {
-  const [menuData, setMenuData] = useState(MenuListData);
+  const { menuData } = useContext(Context);
   const loadDetails = (item) => {
     navigation.navigate("Details", item);
   };

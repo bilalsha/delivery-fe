@@ -10,19 +10,27 @@ import { useState } from "react";
 import ButtonContainer from "../Components/ButtonsContainer";
 import TripleButtonsContainer from "../Components/TripleButtonContainer";
 import PaymentWithButton from "../Components/PaymentWithButton";
+
 const DetailsPage = ({ route, navigation }) => {
   const { title, price, image } = route.params;
   const [itemsCounter, setItemsCounter] = useState(1);
+  const [newPrice, setNewPrice] = useState(price.toFixed(2));
 
   const decreaseItemsCounter = () => {
     if (itemsCounter === 1) {
       return;
     } else {
       setItemsCounter((prevItemsCounter) => prevItemsCounter - 1);
+      setNewPrice((prev) => {
+        return (+prev - price).toFixed(2);
+      });
     }
   };
   const increaseItemsCounter = () => {
     setItemsCounter((prevItemsCounter) => prevItemsCounter + 1);
+    setNewPrice((prev) => {
+      return (+prev + price).toFixed(2);
+    });
   };
   const onPressCartButton = () => {
     navigation.navigate("Cart");
@@ -91,7 +99,7 @@ const DetailsPage = ({ route, navigation }) => {
       <View style={styles.paymentWithButtonContainer}>
         <PaymentWithButton
           title="Add to Cart"
-          price={price}
+          price={newPrice}
           onPressButton={onPressCartButton}
         />
       </View>

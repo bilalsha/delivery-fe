@@ -5,6 +5,7 @@ import MainStack from "./routes/MainStack";
 import { SafeAreaView } from "react-native";
 import { Fragment } from "react";
 import { useFonts } from "expo-font";
+import AppContext from "./store/App-Context";
 export default function App() {
   const [loaded] = useFonts({
     Poppins400: require("./assets/fonts/Poppins-Regular.ttf"),
@@ -15,14 +16,11 @@ export default function App() {
     return null;
   }
   return (
-    <Fragment>
-      <SafeAreaView style={{ flex: 0, backgroundColor: "red" }} />
-      <SafeAreaView style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
-        <NavigationContainer>
-          <MainStack />
-        </NavigationContainer>
-      </SafeAreaView>
-    </Fragment>
+    <AppContext>
+      <NavigationContainer>
+        <MainStack />
+      </NavigationContainer>
+    </AppContext>
   );
 }
 

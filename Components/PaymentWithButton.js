@@ -4,7 +4,7 @@ const PaymentWithButton = (props) => {
   return (
     <View style={styles.container}>
       <View>
-        <Text style={styles.priceText}>{props.price} </Text>
+        <Text style={styles.priceText}>{`$ ${props.price}`} </Text>
       </View>
 
       <TouchableOpacity onPress={props.onPressButton}>
