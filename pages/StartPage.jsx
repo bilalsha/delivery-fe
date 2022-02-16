@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
-import CustomButton from "../Components/CustomButton";
-import ButtonContainer from "../Components/ButtonsContainer";
-import Circle from "../Components/Circle";
+import CustomButton from "../components/CustomButton";
+import ButtonContainer from "../containers/ButtonsContainer";
+import Circle from "../components/Circle";
 import { globalStyles } from "../styles/globalStyles";
 const StartPage = ({ navigation }) => {
   const onPressCustomButton = () => {

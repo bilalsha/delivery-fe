@@ -1,9 +1,6 @@
-import { StyleSheet, Text, View } from "react-native";
 import "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
 import MainStack from "./routes/MainStack";
-import { SafeAreaView } from "react-native";
-import { Fragment } from "react";
 import { useFonts } from "expo-font";
 import AppContext from "./store/App-Context";
 export default function App() {
@@ -23,5 +20,3 @@ export default function App() {
     </AppContext>
   );
 }
-
-const styles = StyleSheet.create({});

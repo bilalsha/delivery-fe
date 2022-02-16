@@ -1,5 +1,6 @@
-import { StyleSheet, Text, View, Button } from "react-native";
-import PaymentWithButton from "../Components/PaymentWithButton";
+import { StyleSheet, Text, View } from "react-native";
+import PaymentWithButton from "../components/PaymentWithButton";
+import { globalStyles } from "../styles/globalStyles";
 const CartPage = ({ navigation }) => {
   const onPressCartButton = () => {
     navigation.navigate("Confirmation");
@@ -10,24 +11,21 @@ const CartPage = ({ navigation }) => {
       <View style={{ flex: 1 }}></View>
       <View style={styles.bottomCard}>
         <View style={styles.bottomCardTextContainer}>
-          <Text>Sub total</Text>
-          <Text>$ 12.80</Text>
+          <Text style={globalStyles.textHeadingSecondary}>Sub total</Text>
+          <Text style={globalStyles.textHeadingSecondary}>$ 12.80</Text>
         </View>
         <View
           style={{
-            borderBottomColor: "#BDBDBD",
-            borderStyle: "dotted",
-            borderBottomWidth: 1,
-            paddingBottom: 10,
+            ...styles.bottomCardBorderStyle,
             ...styles.bottomCardTextContainer,
           }}
         >
-          <Text>Tax</Text>
-          <Text>$3.00</Text>
+          <Text style={globalStyles.textHeadingSecondary}>Tax</Text>
+          <Text style={globalStyles.textHeadingSecondary}>$3.00</Text>
         </View>
         <View style={styles.bottomCardTextContainer}>
-          <Text>Total</Text>
-          <Text>$15.80</Text>
+          <Text style={globalStyles.textHeadingSecondary}>Total</Text>
+          <Text style={globalStyles.textHeadingSecondary}>$15.80</Text>
         </View>
         <View style={styles.paymentWithButtonContainer}>
           <PaymentWithButton
@@ -58,7 +56,7 @@ const styles = StyleSheet.create({
   bottomCard: {
     flex: 1.5,
     borderTopColor: "#00000014",
-    borderWidth: 1,
+    borderTopWidth: 1,
   },
   bottomCardTextContainer: {
     flexDirection: "row",
@@ -66,6 +64,12 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     marginRight: 20,
     marginTop: 20,
+  },
+  bottomCardBorderStyle: {
+    borderBottomColor: "#BDBDBD",
+    borderStyle: "dotted",
+    borderBottomWidth: 1,
+    paddingBottom: 10,
   },
   paymentWithButtonContainer: {
     flex: 1,

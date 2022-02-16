@@ -24,7 +24,7 @@ const ReducerFunction = (state, action) => {
   }
 };
 
-const ContainerLocationPage = (props) => {
+const LocationPageContainer = (props) => {
   const [activeState, dispatchAcitveState] = useReducer(ReducerFunction, {
     button1: true,
     button2: false,
@@ -103,7 +103,7 @@ const ContainerLocationPage = (props) => {
   );
 };
 
-export default ContainerLocationPage;
+export default LocationPageContainer;
 
 const styles = StyleSheet.create({
   buttonContainer: {

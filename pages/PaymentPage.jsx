@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, Button } from "react-native";
-import ButtonContainer from "../Components/ButtonsContainer";
-import Circle from "../Components/Circle";
-import CustomButton from "../Components/CustomButton";
+import ButtonContainer from "../containers/ButtonsContainer";
+import Circle from "../components/Circle";
+import CustomButton from "../components/CustomButton";
 import { globalStyles } from "../styles/globalStyles";
 const PaymentPage = ({ navigation }) => {
   const onPressNextButton = () => {

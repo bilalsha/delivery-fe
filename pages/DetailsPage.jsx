@@ -1,15 +1,8 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  Button,
-  Image,
-  TouchableOpacity,
-} from "react-native";
+import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import { useState } from "react";
-import ButtonContainer from "../Components/ButtonsContainer";
-import TripleButtonsContainer from "../Components/TripleButtonContainer";
-import PaymentWithButton from "../Components/PaymentWithButton";
+import ButtonContainer from "../containers/ButtonsContainer";
+import TripleButtonsContainer from "../containers/TripleButtonContainer";
+import PaymentWithButton from "../components/PaymentWithButton";
 
 const DetailsPage = ({ route, navigation }) => {
   const { title, price, image } = route.params;
