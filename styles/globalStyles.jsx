@@ -41,4 +41,13 @@ export const globalStyles = StyleSheet.create({
     width: 335,
     alignItems: "center",
   },
+  buttonContainer: {
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    alignItems: "center",
+    backgroundColor: "#F2F2F2",
+    width: 335,
+    height: 50,
+    borderRadius: 15,
+  },
 });

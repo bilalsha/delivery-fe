@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, Button } from "react-native";
 import ButtonContainer from "../containers/ButtonsContainer";
 import Circle from "../components/Circle";
-import CustomButton from "../components/CustomButton";
+import CustomLargeButton from "../components/CustomLargeButton";
 import { globalStyles } from "../styles/globalStyles";
 const PaymentPage = ({ navigation }) => {
   const onPressNextButton = () => {
@@ -28,7 +28,7 @@ const PaymentPage = ({ navigation }) => {
         </View>
       </View>
       <View style={styles.buttonContainer}>
-        <CustomButton title="Next" onPressButton={onPressNextButton} />
+        <CustomLargeButton title="Next" onPressButton={onPressNextButton} />
       </View>
     </View>
   );

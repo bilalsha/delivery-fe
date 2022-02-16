@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from "react-native";
-import CustomButton from "../components/CustomButton";
+import CustomLargeButton from "../components/CustomLargeButton";
 import ButtonContainer from "../containers/ButtonsContainer";
 import Circle from "../components/Circle";
 import { globalStyles } from "../styles/globalStyles";
@@ -28,7 +28,7 @@ const StartPage = ({ navigation }) => {
         </View>
       </View>
       <View style={styles.buttonContainer}>
-        <CustomButton title="Next" onPressButton={onPressCustomButton} />
+        <CustomLargeButton title="Next" onPressButton={onPressCustomButton} />
       </View>
     </View>
   );

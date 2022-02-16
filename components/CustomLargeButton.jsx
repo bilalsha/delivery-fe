@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { globalStyles } from "../styles/globalStyles";
-const CustomButton = (props) => {
+const CustomLargeButton = (props) => {
   return (
     <TouchableOpacity onPress={props.onPressButton}>
       <View style={styles.buttonContainer}>
@@ -10,7 +10,7 @@ const CustomButton = (props) => {
   );
 };
 
-export default CustomButton;
+export default CustomLargeButton;
 
 const styles = StyleSheet.create({
   buttonContainer: {

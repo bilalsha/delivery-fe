@@ -1,5 +1,6 @@
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { View } from "react-native";
 import { useReducer } from "react";
+import CustomMediumButton from "../components/CustomMediumButton";
 import { globalStyles } from "../styles/globalStyles";
 const ReducerFunction = (state, action) => {
   if (action.type === "BUTTON1_ACTIVE") {
@@ -32,55 +33,19 @@ const ButtonContainer = (props) => {
   };
 
   return (
-    <View style={styles.buttonContainer}>
-      <TouchableOpacity onPress={onPressButton1}>
-        <View
-          style={{
-            backgroundColor: activeState.button1 ? "#EE4137" : "#FFFFFF",
-            ...globalStyles.ButtonContainer,
-          }}
-        >
-          <Text
-            style={{
-              color: activeState.button1 ? "#FFFFFF" : "#828282",
-              ...globalStyles.textButtonContainer,
-            }}
-          >
-            {props.Button1Title}
-          </Text>
-        </View>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={onPressButton2}>
-        <View
-          style={{
-            backgroundColor: activeState.button2 ? "#EE4137" : "#FFFFFF",
-            ...globalStyles.ButtonContainer,
-          }}
-        >
-          <Text
-            style={{
-              color: activeState.button2 ? "#FFFFFF" : "#828282",
-              ...globalStyles.textButtonContainer,
-            }}
-          >
-            {props.Button2Title}
-          </Text>
-        </View>
-      </TouchableOpacity>
+    <View style={globalStyles.buttonContainer}>
+      <CustomMediumButton
+        buttonState={activeState.button1}
+        ButtonTitle={props.Button1Title}
+        onPress={onPressButton1}
+      />
+      <CustomMediumButton
+        buttonState={activeState.button2}
+        ButtonTitle={props.Button2Title}
+        onPress={onPressButton2}
+      />
     </View>
   );
 };
 
 export default ButtonContainer;
-
-const styles = StyleSheet.create({
-  buttonContainer: {
-    flexDirection: "row",
-    justifyContent: "space-evenly",
-    alignItems: "center",
-    backgroundColor: "#F2F2F2",
-    width: 335,
-    height: 50,
-    borderRadius: 15,
-  },
-});

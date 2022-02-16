@@ -1,5 +1,7 @@
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { View } from "react-native";
 import { useReducer } from "react";
+import CustomSmallButton from "../components/CustomSmallButton";
+import { globalStyles } from "../styles/globalStyles";
 
 const ReducerFunction = (state, action) => {
   if (action.type === "BUTTON1_ACTIVE") {
@@ -58,85 +60,24 @@ const TripleButtonsContainer = (props) => {
   };
 
   return (
-    <View style={styles.buttonContainer}>
-      <TouchableOpacity onPress={onPressButton1}>
-        <View
-          style={{
-            backgroundColor: activeState.button1 ? "#EE4137" : "#FFFFFF",
-            ...styles.Button,
-          }}
-        >
-          <Text
-            style={{
-              color: activeState.button1 ? "#FFFFFF" : "#828282",
-              ...styles.textButton,
-            }}
-          >
-            {props.Button1Title}
-          </Text>
-        </View>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={onPressButton2}>
-        <View
-          style={{
-            backgroundColor: activeState.button2 ? "#EE4137" : "#FFFFFF",
-            ...styles.Button,
-          }}
-        >
-          <Text
-            style={{
-              color: activeState.button2 ? "#FFFFFF" : "#828282",
-              ...styles.textButton,
-            }}
-          >
-            {props.Button2Title}
-          </Text>
-        </View>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={onPressButton3}>
-        <View
-          style={{
-            backgroundColor: activeState.button3 ? "#EE4137" : "#FFFFFF",
-            ...styles.Button,
-          }}
-        >
-          <Text
-            style={{
-              color: activeState.button3 ? "#FFFFFF" : "#828282",
-              ...styles.textButton,
-            }}
-          >
-            {props.Button3Title}
-          </Text>
-        </View>
-      </TouchableOpacity>
+    <View style={globalStyles.buttonContainer}>
+      <CustomSmallButton
+        onPress={onPressButton1}
+        buttonState={activeState.button1}
+        ButtonTitle={props.Button1Title}
+      />
+      <CustomSmallButton
+        onPress={onPressButton2}
+        buttonState={activeState.button2}
+        ButtonTitle={props.Button2Title}
+      />
+      <CustomSmallButton
+        onPress={onPressButton3}
+        buttonState={activeState.button3}
+        ButtonTitle={props.Button3Title}
+      />
     </View>
   );
 };
 
 export default TripleButtonsContainer;
-
-const styles = StyleSheet.create({
-  buttonContainer: {
-    flexDirection: "row",
-    justifyContent: "space-evenly",
-    alignItems: "center",
-    backgroundColor: "#F2F2F2",
-    width: 335,
-    height: 50,
-    borderRadius: 15,
-  },
-  Button: {
-    width: 100,
-    height: 33,
-    borderRadius: 9,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  textButton: {
-    fontSize: 11,
-    fontFamily: "Poppins400",
-    textAlign: "center",
-    fontStyle: "normal",
-  },
-});

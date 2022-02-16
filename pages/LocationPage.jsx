@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 import Circle from "../components/Circle";
-import CustomButton from "../components/CustomButton";
+import CustomLargeButton from "../components/CustomLargeButton";
 import { globalStyles } from "../styles/globalStyles";
 import LocationPageContainer from "../containers/LocationPageContainer";
 const LocationPage = ({ navigation }) => {
@@ -26,7 +26,7 @@ const LocationPage = ({ navigation }) => {
       </View>
 
       <View style={styles.buttonContainer}>
-        <CustomButton title="Next" onPressButton={onPressCustomButton} />
+        <CustomLargeButton title="Next" onPressButton={onPressCustomButton} />
       </View>
     </View>
   );

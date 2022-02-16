@@ -1,12 +1,7 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  TextInput,
-} from "react-native";
+import { StyleSheet, Text, View, TextInput } from "react-native";
 import { useReducer, Fragment } from "react";
 import { globalStyles } from "../styles/globalStyles";
+import CustomMediumButton from "../components/CustomMediumButton";
 const ReducerFunction = (state, action) => {
   if (action.type === "BUTTON1_ACTIVE") {
     return {
@@ -50,41 +45,17 @@ const LocationPageContainer = (props) => {
 
   return (
     <Fragment>
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity onPress={onPressButton1}>
-          <View
-            style={{
-              backgroundColor: activeState.button1 ? "#EE4137" : "#FFFFFF",
-              ...globalStyles.ButtonContainer,
-            }}
-          >
-            <Text
-              style={{
-                color: activeState.button1 ? "#FFFFFF" : "#828282",
-                ...globalStyles.textButtonContainer,
-              }}
-            >
-              {props.Button1Title}
-            </Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={onPressButton2}>
-          <View
-            style={{
-              backgroundColor: activeState.button2 ? "#EE4137" : "#FFFFFF",
-              ...globalStyles.ButtonContainer,
-            }}
-          >
-            <Text
-              style={{
-                color: activeState.button2 ? "#FFFFFF" : "#828282",
-                ...globalStyles.textButtonContainer,
-              }}
-            >
-              {props.Button2Title}
-            </Text>
-          </View>
-        </TouchableOpacity>
+      <View style={globalStyles.buttonContainer}>
+        <CustomMediumButton
+          buttonState={activeState.button1}
+          ButtonTitle={props.Button1Title}
+          onPress={onPressButton1}
+        />
+        <CustomMediumButton
+          buttonState={activeState.button2}
+          ButtonTitle={props.Button2Title}
+          onPress={onPressButton2}
+        />
       </View>
       <View style={styles.textContainer}>
         <Text style={globalStyles.textHeadingSecondary}>
@@ -106,15 +77,6 @@ const LocationPageContainer = (props) => {
 export default LocationPageContainer;
 
 const styles = StyleSheet.create({
-  buttonContainer: {
-    flexDirection: "row",
-    justifyContent: "space-evenly",
-    alignItems: "center",
-    backgroundColor: "#F2F2F2",
-    width: 335,
-    height: 50,
-    borderRadius: 15,
-  },
   textContainer: {
     alignItems: "center",
     justifyContent: "center",
