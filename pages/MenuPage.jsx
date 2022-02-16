@@ -5,22 +5,28 @@ import {
   FlatList,
   TouchableOpacity,
   Image,
+  ScrollView,
 } from "react-native";
 
-import { MenuIconsData } from "../data/MenuIconsData";
 import { useContext } from "react";
 import { Context } from "../store/App-Context";
-
+import { MenuIconsData } from "../data/MenuIconsData";
 // import TabNavigator from "../routes/TabNavigator";
 const MenuPage = ({ navigation }) => {
-  const { menuData } = useContext(Context);
+  const { menuData, changeMenuData } = useContext(Context);
   const loadDetails = (item) => {
     navigation.navigate("Details", item);
   };
   const renderIcon = ({ item }) => {
     return (
-      <TouchableOpacity style={styles.iconWrapper}>
-        <Image source={item.image} style={styles.iconImage} />
+      <TouchableOpacity
+        style={styles.iconWrapper}
+        onPress={() => changeMenuData(item.title)}
+      >
+        <Image
+          source={item.image}
+          style={{ tintColor: "grey", ...styles.iconImage }}
+        />
         <Text style={styles.iconTitle}>{item.title}</Text>
       </TouchableOpacity>
     );
@@ -53,13 +59,29 @@ const MenuPage = ({ navigation }) => {
       {/*Menu Icons*/}
 
       {/*Menu List*/}
-      <View style={styles.listContainer}>
+      {/* <View style={styles.listContainer}>
         <FlatList
           keyExtractor={(item) => item.id}
           data={menuData}
           renderItem={renderListData}
         />
-      </View>
+      </View> */}
+      <ScrollView>
+        <View style={styles.listContainer}>
+          {menuData.map((item) => {
+            return (
+              <TouchableOpacity
+                key={item.id}
+                style={styles.listWrapper}
+                onPress={() => loadDetails(item)}
+              >
+                <Image source={item.image} style={styles.listImage} />
+                <Text style={styles.listTitle}>{item.title}</Text>
+              </TouchableOpacity>
+            );
+          })}
+        </View>
+      </ScrollView>
     </View>
   );
 };
@@ -74,9 +96,11 @@ const styles = StyleSheet.create({
   iconWrapper: {
     justifyContent: "flex-end",
     alignItems: "center",
-    marginRight: 33,
+    marginRight: 15,
+    marginLeft: 15,
   },
   iconImage: {
+    // tintColor: "red",
     width: 30,
   },
   iconTitle: {
@@ -86,15 +110,25 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
 
+  // listContainer: {
+  //   flex: 1,
+  //   alignItems: "center",
+  // },
   listContainer: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    alignContent: "center",
+    justifyContent: "center",
     flex: 1,
-    alignItems: "center",
   },
   listWrapper: {
     // width: 194,
+    marginTop: 15,
+    marginRight: 15,
+    marginLeft: 15,
   },
   listImage: {
-    width: 194,
+    width: 167,
     height: 177,
     borderRadius: 12,
   },
