@@ -51,8 +51,8 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
   },
   buttonContainer: {
-    width: 335,
     flex: 1.5,
     justifyContent: "flex-end",
+    alignItems: "center",
   },
 });

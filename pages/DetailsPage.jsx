@@ -149,5 +149,6 @@ const styles = StyleSheet.create({
   paymentWithButtonContainer: {
     flex: 1,
     justifyContent: "flex-end",
+    alignItems: "center",
   },
 });

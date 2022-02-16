@@ -49,8 +49,9 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
   },
   buttonContainer: {
-    width: 335,
+    // width: 335,
     flex: 2,
     justifyContent: "flex-end",
+    alignItems: "center",
   },
 });

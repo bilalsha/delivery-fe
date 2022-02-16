@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   buttonContainer: {
-    width: 335,
+    alignItems: "center",
     flex: 1,
     justifyContent: "flex-end",
   },

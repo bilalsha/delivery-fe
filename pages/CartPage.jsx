@@ -1,5 +1,6 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Image } from "react-native";
 import PaymentWithButton from "../components/PaymentWithButton";
+import TextRow from "../components/TextRow";
 import { globalStyles } from "../styles/globalStyles";
 const CartPage = ({ navigation }) => {
   const onPressCartButton = () => {
@@ -7,26 +8,51 @@ const CartPage = ({ navigation }) => {
   };
   return (
     <View style={{ flex: 1 }}>
-      <View style={styles.card}></View>
+      {/* Top Card  */}
+      <View style={styles.topCard}>
+        <View style={styles.topCardContainer1}>
+          <View style={styles.topCardImageContainer}>
+            <Image
+              source={require("../assets/images/cart.png")}
+              style={styles.imageStyle}
+            />
+          </View>
+          <View style={styles.topCardTextContainer}>
+            <Text style={globalStyles.textProductCategory}>Entrees</Text>
+            <Text style={globalStyles.textProductName}>Extra Beef Burger</Text>
+            <Text style={globalStyles.textProductPrice}>$ 9.90</Text>
+          </View>
+          <View style={styles.topCardCounterContainer}>
+            <Text>Counter</Text>
+          </View>
+        </View>
+        <View style={styles.topCardContainer2}>
+          <View style={{ flex: 1, marginRight: 10, marginBottom: 10 }}></View>
+          <View style={{ flex: 2, marginTop: 10, marginBottom: 10 }}>
+            <View style={styles.topCardTextContainer2}>
+              <Text style={globalStyles.textProductName}>Cheese</Text>
+              <Text style={globalStyles.textProductPrice}>$ 3.00</Text>
+            </View>
+            <View style={styles.topCardTextContainer2}>
+              <Text style={globalStyles.textProductName}>Well Done</Text>
+              <Text style={globalStyles.textProductPrice}>$ 0.00</Text>
+            </View>
+          </View>
+          <View style={styles.topCardCounterContainer2}>
+            <Text>Counter</Text>
+          </View>
+        </View>
+      </View>
       <View style={{ flex: 1 }}></View>
       <View style={styles.bottomCard}>
-        <View style={styles.bottomCardTextContainer}>
-          <Text style={globalStyles.textHeadingSecondary}>Sub total</Text>
-          <Text style={globalStyles.textHeadingSecondary}>$ 12.80</Text>
-        </View>
-        <View
-          style={{
-            ...styles.bottomCardBorderStyle,
-            ...styles.bottomCardTextContainer,
-          }}
-        >
-          <Text style={globalStyles.textHeadingSecondary}>Tax</Text>
-          <Text style={globalStyles.textHeadingSecondary}>$3.00</Text>
-        </View>
-        <View style={styles.bottomCardTextContainer}>
-          <Text style={globalStyles.textHeadingSecondary}>Total</Text>
-          <Text style={globalStyles.textHeadingSecondary}>$15.80</Text>
-        </View>
+        <TextRow title="Sub total" price="$ 12.80" customStyle={{}} />
+        <TextRow
+          title="Tax"
+          price="$ 3.00"
+          customStyle={styles.bottomCardBorderStyle}
+        />
+        <TextRow title="Total" price="$ 15.80" customStyle={{}} />
+
         <View style={styles.paymentWithButtonContainer}>
           <PaymentWithButton
             title="Select Payment"
@@ -42,10 +68,10 @@ const CartPage = ({ navigation }) => {
 export default CartPage;
 
 const styles = StyleSheet.create({
-  card: {
-    flex: 1,
+  topCard: {
     margin: 15,
     borderRadius: 15,
+    height: 200,
     // shadowColor: "#00000014",
     borderWidth: 1,
     // overflow: "hidden",
@@ -53,8 +79,52 @@ const styles = StyleSheet.create({
     // shadowOpacity: 2,
     borderColor: "#00000012",
   },
-  bottomCard: {
+  topCardContainer1: {
+    flex: 1,
+    margin: 10,
+    flexDirection: "row",
+    justifyContent: "space-around",
+  },
+  topCardContainer2: {
+    flex: 1,
+    margin: 10,
+    flexDirection: "row",
+  },
+  topCardImageContainer: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "flex-end",
+    alignItems: "center",
+    marginRight: 10,
+  },
+  topCardTextContainer: {
+    flex: 2,
+    justifyContent: "center",
+  },
+  topCardTextContainer2: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  topCardCounterContainer: {
     flex: 1.5,
+    justifyContent: "flex-end",
+    alignItems: "center",
+  },
+  topCardCounterContainer2: {
+    justifyContent: "flex-start",
+    alignItems: "center",
+    flex: 1.5,
+    marginTop: 10,
+  },
+  imageStyle: {
+    height: 65,
+    width: 60,
+    borderRadius: 12,
+  },
+
+  bottomCard: {
+    height: 250,
     borderTopColor: "#00000014",
     borderTopWidth: 1,
   },
@@ -65,6 +135,7 @@ const styles = StyleSheet.create({
     marginRight: 20,
     marginTop: 20,
   },
+  bottomCardNone: {},
   bottomCardBorderStyle: {
     borderBottomColor: "#BDBDBD",
     borderStyle: "dotted",
