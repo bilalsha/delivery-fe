@@ -3,7 +3,7 @@ import PaymentWithButton from "../components/PaymentWithButton";
 import { globalStyles } from "../styles/globalStyles";
 const CartPage = ({ navigation }) => {
   const onPressCartButton = () => {
-    navigation.navigate("Confirmation");
+    navigation.navigate("Payment");
   };
   return (
     <View style={{ flex: 1 }}>
