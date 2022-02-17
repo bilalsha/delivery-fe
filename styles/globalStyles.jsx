@@ -79,4 +79,16 @@ export const globalStyles = StyleSheet.create({
     color: "#EE4137",
     fontStyle: "normal",
   },
+  imageContainer: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "flex-end",
+    alignItems: "center",
+    marginRight: 10,
+  },
+  imageStyle: {
+    height: 65,
+    width: 60,
+    borderRadius: 12,
+  },
 });

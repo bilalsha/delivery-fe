@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from "react-native";
 import Circle from "../components/Circle";
 import CustomLargeButton from "../components/CustomLargeButton";
 import { globalStyles } from "../styles/globalStyles";
-import LocationPageContainer from "../containers/LocationPageContainer";
+import LocationPageComponent from "../components/LocationPageComponent";
 const LocationPage = ({ navigation }) => {
   const onPressCustomButton = () => {
     navigation.navigate("Menu");
@@ -26,7 +26,7 @@ const LocationPage = ({ navigation }) => {
           <Text style={globalStyles.textHeading}>Where are you?</Text>
         </View>
 
-        <LocationPageContainer
+        <LocationPageComponent
           Button1Title="Cart Number"
           Button2Title="Hole Number"
           onPressButton1={onPressCartNumber}

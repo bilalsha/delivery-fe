@@ -19,7 +19,7 @@ const ReducerFunction = (state, action) => {
   }
 };
 
-const LocationPageContainer = (props) => {
+const LocationPageComponent = (props) => {
   const [activeState, dispatchAcitveState] = useReducer(ReducerFunction, {
     button1: true,
     button2: false,
@@ -76,7 +76,7 @@ const LocationPageContainer = (props) => {
   );
 };
 
-export default LocationPageContainer;
+export default LocationPageComponent;
 
 const styles = StyleSheet.create({
   textContainer: {

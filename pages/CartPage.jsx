@@ -1,70 +1,171 @@
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import PaymentWithButton from "../components/PaymentWithButton";
-import { useEffect } from "react";
+import { useState, useEffect, useReducer } from "react";
 import TextRow from "../components/TextRow";
+import Card from "../components/Card";
+import ImageComponent from "../components/ImageComponent";
+import CartDetail from "../components/CartDetail";
 import { globalStyles } from "../styles/globalStyles";
+import CartTextRow from "../components/CartTextRow";
+import Counter from "../components/Counter";
+
+const reducerFunction = (state, action) => {
+  if (action.type === "INC") {
+    let price = state.price + state.singleItemPrice;
+    let quantity = state.quantity + 1;
+    let subTotal = state.subTotal + state.singleItemPrice;
+    let total = state.total + state.singleItemPrice;
+    let singleItemPrice = state.singleItemPrice;
+
+    return {
+      price,
+      quantity,
+      subTotal,
+      total,
+      singleItemPrice,
+    };
+  }
+  if (action.type === "DEC") {
+    if (state.quantity === 1) {
+      return state;
+    } else {
+      let price = state.price - state.singleItemPrice;
+      let quantity = state.quantity - 1;
+      let subTotal = state.subTotal - state.singleItemPrice;
+      let total = state.total - state.singleItemPrice;
+      let singleItemPrice = state.singleItemPrice;
+
+      return {
+        price,
+        quantity,
+        subTotal,
+        total,
+        singleItemPrice,
+      };
+    }
+  }
+};
+
 const CartPage = ({ route, navigation }) => {
   const onPressCartButton = () => {
     navigation.navigate("Payment", route.params);
   };
-  const { cheese, image, meatTemperature, productName, price, cheesePrice } =
-    route.params;
-
-  let subTotal = +price + cheesePrice;
+  const {
+    cheese,
+    image,
+    meatTemperature,
+    productName,
+    price,
+    cheesePrice,
+    quantity,
+  } = route.params;
   let tax = 3.0;
+  let subTotal = +price + cheesePrice;
   let total = subTotal + tax;
+  let singleItemPrice = +price / quantity;
+  // const [data, setData] = useState({
+  //   price: +price,
+  //   quantity,
+  //   subTotal,
+  //   total,
+  // });
+  const [data, dispatchData] = useReducer(reducerFunction, {
+    price: +price,
+    quantity,
+    subTotal,
+    total,
+    singleItemPrice,
+  });
+
   useEffect(() => {
     console.log(route.params);
 
     console.log(total);
-    route.params.totalPrice = total;
+    route.params.price = data.price;
+    route.params.quantity = data.quantity;
+    route.params.subTotal = data.subTotalb;
+    route.params.totalPrice = data.total;
+
     console.log(route.params);
-  }, []);
+  }, [data]);
+
+  const decreaseItemsCounter = () => {
+    dispatchData({
+      type: "DEC",
+    });
+  };
+  const increaseItemsCounter = () => {
+    dispatchData({
+      type: "INC",
+    });
+  };
+
+  const increaseCheese = () => {
+    dispatchData({
+      type: "INC_CHEESE",
+    });
+  };
+  const decreaseCheese = () => {
+    dispatchData({
+      type: "DEC_CHEESE",
+    });
+  };
+
+  // setData((prevData) => {
+  //   let singleItemPrice = +price / quantity;
+  //   console.log(singleItemPrice);
+  //   console.log(prevData.quantity);
+  //   prevData.price = prevData.price + singleItemPrice;
+  //   prevData.quantity = prevData.quantity + 1;
+  //   prevData.subTotal = prevData.subTotal + singleItemPrice;
+  //   prevData.total = prevData.total + singleItemPrice;
+  //   console.log("Inside");
+  //   console.log(prevData);
+  //   let newData = prevData;
+  //   return newData;
+  // });
+
   return (
     <View style={{ flex: 1 }}>
       {/* Top Card  */}
-      <View style={styles.topCard}>
+      <Card styles={{ height: 200 }}>
         <View style={styles.topCardContainer1}>
-          <View style={styles.topCardImageContainer}>
-            <Image source={image} style={styles.imageStyle} />
-          </View>
-          <View style={styles.topCardTextContainer}>
-            <Text style={globalStyles.textProductCategory}>Entrees</Text>
-            <Text style={globalStyles.textProductName}>{productName}</Text>
-            <Text style={globalStyles.textProductPrice}>
-              $ {route.params.price}
-            </Text>
-          </View>
+          <ImageComponent
+            imageContainer={globalStyles.imageContainer}
+            image={image}
+            imageStyle={globalStyles.imageStyle}
+          />
+          <CartDetail productName={productName} price={data.price} />
           <View style={styles.topCardCounterContainer}>
-            <Text>Counter</Text>
+            <Counter
+              itemsCounter={data.quantity}
+              onPressPlus={increaseItemsCounter}
+              onPressMinus={decreaseItemsCounter}
+            />
           </View>
         </View>
         <View style={styles.topCardContainer2}>
           <View style={{ flex: 1, marginRight: 10, marginBottom: 10 }}></View>
           <View style={{ flex: 2, marginTop: 10, marginBottom: 10 }}>
-            <View style={styles.topCardTextContainer2}>
-              <Text style={globalStyles.textProductName}>Cheese</Text>
-              <Text style={globalStyles.textProductPrice}>
-                $ {route.params.cheesePrice.toFixed(2)}
-              </Text>
-            </View>
-            <View style={styles.topCardTextContainer2}>
-              <Text style={globalStyles.textProductName}>
-                {meatTemperature}
-              </Text>
-              <Text style={globalStyles.textProductPrice}>$ 0.00</Text>
-            </View>
+            <CartTextRow title="Cheese" price={cheesePrice} />
+            <CartTextRow title={meatTemperature} price={0.0} />
           </View>
           <View style={styles.topCardCounterContainer2}>
             <Text>Counter</Text>
+            {/* <Counter
+              itemsCounter={data.quantity}
+              onPressPlus={increaseCheese}
+              onPressMinus={decreaseCheese}
+            /> */}
           </View>
         </View>
-      </View>
+      </Card>
       <View style={{ flex: 1 }}></View>
+      {/* Bottom Card  */}
       <View style={styles.bottomCard}>
         <TextRow
           title="Sub total"
-          price={`$ ${subTotal.toFixed(2)}`}
+          price={`$ ${data.subTotal.toFixed(2)}`}
           customStyle={{}}
         />
         <TextRow
@@ -74,14 +175,14 @@ const CartPage = ({ route, navigation }) => {
         />
         <TextRow
           title="Total"
-          price={`$ ${total.toFixed(2)}`}
+          price={`$ ${data.total.toFixed(2)}`}
           customStyle={{}}
         />
 
         <View style={styles.paymentWithButtonContainer}>
           <PaymentWithButton
             title="Select Payment"
-            price={total.toFixed(2)}
+            price={data.total.toFixed(2)}
             onPressButton={onPressCartButton}
           />
         </View>
@@ -93,17 +194,6 @@ const CartPage = ({ route, navigation }) => {
 export default CartPage;
 
 const styles = StyleSheet.create({
-  topCard: {
-    margin: 15,
-    borderRadius: 15,
-    height: 200,
-    // shadowColor: "#00000014",
-    borderWidth: 1,
-    // overflow: "hidden",
-    // shadowRadius: 20,
-    // shadowOpacity: 2,
-    borderColor: "#00000012",
-  },
   topCardContainer1: {
     flex: 1,
     margin: 10,
@@ -115,22 +205,6 @@ const styles = StyleSheet.create({
     margin: 10,
     flexDirection: "row",
   },
-  topCardImageContainer: {
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "flex-end",
-    alignItems: "center",
-    marginRight: 10,
-  },
-  topCardTextContainer: {
-    flex: 2,
-    justifyContent: "center",
-  },
-  topCardTextContainer2: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
   topCardCounterContainer: {
     flex: 1.5,
     justifyContent: "flex-end",
@@ -141,11 +215,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flex: 1.5,
     marginTop: 10,
-  },
-  imageStyle: {
-    height: 65,
-    width: 60,
-    borderRadius: 12,
   },
 
   bottomCard: {

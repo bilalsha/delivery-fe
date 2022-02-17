@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 import CustomLargeButton from "../components/CustomLargeButton";
-import ButtonContainer from "../containers/ButtonsContainer";
+import DoubleButtonComponent from "../components/DoubleButtonComponent";
 import Circle from "../components/Circle";
 import { globalStyles } from "../styles/globalStyles";
 const StartPage = ({ navigation }) => {
@@ -27,7 +27,7 @@ const StartPage = ({ navigation }) => {
         </View>
 
         <View style={{ width: 335 }}>
-          <ButtonContainer
+          <DoubleButtonComponent
             Button1Title="Pickup Order"
             Button2Title="Deliver To Me"
             onPressButton1={onPressPickUpOrder}

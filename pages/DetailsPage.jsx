@@ -1,8 +1,9 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import { useState, useEffect } from "react";
-import ButtonContainer from "../containers/ButtonsContainer";
-import TripleButtonsContainer from "../containers/TripleButtonContainer";
+import DoubleButtonComponent from "../components/DoubleButtonComponent";
+import TripleButtonComponent from "../components/TripleButtonComponent";
 import PaymentWithButton from "../components/PaymentWithButton";
+import Counter from "../components/Counter";
 
 const DetailsPage = ({ route, navigation }) => {
   const { title, price, image } = route.params;
@@ -96,27 +97,11 @@ const DetailsPage = ({ route, navigation }) => {
           <View style={{ width: 220 }}>
             <Text style={styles.itemName}>{title}</Text>
           </View>
-          <View style={styles.counterContainer}>
-            <TouchableOpacity
-              onPress={decreaseItemsCounter}
-              style={{ flex: 1 }}
-            >
-              <View>
-                <Text style={styles.counterText}>-</Text>
-              </View>
-            </TouchableOpacity>
-            <View style={{ flex: 1 }}>
-              <Text style={styles.counterText}>{itemsCounter}</Text>
-            </View>
-            <TouchableOpacity
-              onPress={increaseItemsCounter}
-              style={{ flex: 1 }}
-            >
-              <View>
-                <Text style={styles.counterText}>+</Text>
-              </View>
-            </TouchableOpacity>
-          </View>
+          <Counter
+            onPressPlus={increaseItemsCounter}
+            onPressMinus={decreaseItemsCounter}
+            itemsCounter={itemsCounter}
+          />
         </View>
 
         {/* Heading */}
@@ -125,7 +110,7 @@ const DetailsPage = ({ route, navigation }) => {
         </View>
         {/* TripleButtonContainer  */}
         <View style={{ width: 335 }}>
-          <TripleButtonsContainer
+          <TripleButtonComponent
             Button1Title="Rare"
             onPressButton1={onPressRare}
             Button2Title="Medium"
@@ -142,7 +127,7 @@ const DetailsPage = ({ route, navigation }) => {
 
         {/* DoubleButtonContainer  */}
         <View style={{ width: 335 }}>
-          <ButtonContainer
+          <DoubleButtonComponent
             Button1Title="Yes"
             Button2Title="No"
             onPressButton1={onPressYes}
@@ -190,25 +175,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
   },
-  counterContainer: {
-    width: 100,
-    height: 42,
-    backgroundColor: "#F2F2F2",
-    borderRadius: 12,
-    flexDirection: "row",
-    justifyContent: "space-evenly",
-    alignItems: "center",
-  },
+
   optionText: {
     fontFamily: "Poppins600",
     fontSize: 14,
   },
-  counterText: {
-    fontFamily: "Poppins400",
-    fontSize: 18,
-    textAlign: "center",
-    color: "#828282",
-  },
+
   paymentWithButtonContainer: {
     flex: 1,
     justifyContent: "flex-end",

@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, Button } from "react-native";
-import ButtonContainer from "../containers/ButtonsContainer";
+import DoubleButtonComponent from "../components/DoubleButtonComponent";
 import Circle from "../components/Circle";
 import { useEffect } from "react";
 import CustomLargeButton from "../components/CustomLargeButton";
@@ -12,6 +12,12 @@ const PaymentPage = ({ route, navigation }) => {
     console.log("payment Page");
     console.log(route.params);
   }, []);
+  const onPressPayNow = () => {
+    console.log("PayNow");
+  };
+  const onPressChargeMemberBalance = () => {
+    console.log("Charge Member Balance");
+  };
 
   return (
     <View style={styles.mainContainer}>
@@ -27,9 +33,11 @@ const PaymentPage = ({ route, navigation }) => {
           </Text>
         </View>
         <View>
-          <ButtonContainer
+          <DoubleButtonComponent
             Button1Title="Pay Now"
             Button2Title="Charge Member Balance"
+            onPressButton1={onPressPayNow}
+            onPressButton2={onPressChargeMemberBalance}
           />
         </View>
       </View>
