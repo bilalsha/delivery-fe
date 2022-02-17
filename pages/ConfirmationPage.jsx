@@ -1,7 +1,15 @@
 import { StyleSheet, Text, View, Image } from "react-native";
 import { globalStyles } from "../styles/globalStyles";
 import CustomLargeButton from "../components/CustomLargeButton";
-const ConfirmationPage = ({ navigation }) => {
+const ConfirmationPage = ({ route, navigation }) => {
+  const {
+    productName,
+    cheesePrice,
+    meatTemperature,
+    totalPrice,
+    image,
+    price,
+  } = route.params;
   return (
     <View style={{ flex: 1 }}>
       <View style={styles.container1}>
@@ -27,10 +35,7 @@ const ConfirmationPage = ({ navigation }) => {
           }}
         >
           <View style={styles.topCardImageContainer}>
-            <Image
-              source={require("../assets/images/cart.png")}
-              style={styles.imageStyle}
-            />
+            <Image source={image} style={styles.imageStyle} />
           </View>
           <View style={{ flex: 3, paddingRight: 10 }}>
             <View
@@ -44,17 +49,17 @@ const ConfirmationPage = ({ navigation }) => {
               <Text style={globalStyles.textProductCategory}>Entrees</Text>
             </View>
             <View style={styles.rowText}>
-              <Text style={globalStyles.textProductName}>
-                Extra Beef Burger
-              </Text>
-              <Text style={globalStyles.textProductPrice}>$ 9.90</Text>
+              <Text style={globalStyles.textProductName}>{productName}</Text>
+              <Text style={globalStyles.textProductPrice}>${price}</Text>
             </View>
             <View style={styles.rowText}>
               <Text style={globalStyles.textProductName}>Cheese</Text>
-              <Text style={globalStyles.textProductPrice}>$ 3.00</Text>
+              <Text style={globalStyles.textProductPrice}>$ {cheesePrice}</Text>
             </View>
             <View style={styles.rowText}>
-              <Text style={globalStyles.textProductName}>Well Done</Text>
+              <Text style={globalStyles.textProductName}>
+                {meatTemperature}
+              </Text>
               <Text style={globalStyles.textProductPrice}>$ 0.00</Text>
             </View>
           </View>
@@ -64,7 +69,7 @@ const ConfirmationPage = ({ navigation }) => {
         style={{ flex: 1.5, justifyContent: "center", alignItems: "center" }}
       >
         <Text style={globalStyles.textHeadingSecondary}>Amount paid</Text>
-        <Text style={globalStyles.textFinalAmount}>$ 15.90</Text>
+        <Text style={globalStyles.textFinalAmount}>$ {totalPrice}</Text>
       </View>
       <View style={{ ...styles.bottomCard }}>
         <View

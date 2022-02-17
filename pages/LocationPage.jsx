@@ -7,6 +7,13 @@ const LocationPage = ({ navigation }) => {
   const onPressCustomButton = () => {
     navigation.navigate("Menu");
   };
+
+  const onPressCartNumber = () => {
+    console.log("Cart Number");
+  };
+  const onPressHoleNumber = () => {
+    console.log("Hole Number");
+  };
   return (
     <View style={styles.mainContainer}>
       <View style={{ flex: 1 }}></View>
@@ -22,6 +29,8 @@ const LocationPage = ({ navigation }) => {
         <LocationPageContainer
           Button1Title="Cart Number"
           Button2Title="Hole Number"
+          onPressButton1={onPressCartNumber}
+          onPressButton2={onPressHoleNumber}
         />
       </View>
 

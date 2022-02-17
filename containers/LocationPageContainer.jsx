@@ -26,21 +26,23 @@ const LocationPageContainer = (props) => {
     text: "Please enter your Cart number",
   });
 
-  const onPressButton1 = () => {
+  const onPressButton1 = (action) => {
     dispatchAcitveState({
       type: "BUTTON1_ACTIVE",
       valueButton1: true,
       valueButton2: false,
       text: "Please enter your Cart number",
     });
+    action();
   };
-  const onPressButton2 = () => {
+  const onPressButton2 = (action) => {
     dispatchAcitveState({
       type: "BUTTON2_ACTIVE",
       valueButton1: false,
       valueButton2: true,
       text: "Please enter your Hole number",
     });
+    action();
   };
 
   return (
@@ -49,12 +51,12 @@ const LocationPageContainer = (props) => {
         <CustomMediumButton
           buttonState={activeState.button1}
           ButtonTitle={props.Button1Title}
-          onPress={onPressButton1}
+          onPress={() => onPressButton1(props.onPressButton1)}
         />
         <CustomMediumButton
           buttonState={activeState.button2}
           ButtonTitle={props.Button2Title}
-          onPress={onPressButton2}
+          onPress={() => onPressButton2(props.onPressButton2)}
         />
       </View>
       <View style={styles.textContainer}>

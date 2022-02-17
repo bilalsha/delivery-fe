@@ -7,6 +7,12 @@ const StartPage = ({ navigation }) => {
   const onPressCustomButton = () => {
     navigation.navigate("Location");
   };
+  const onPressPickUpOrder = () => {
+    console.log("Pick up Order");
+  };
+  const onPressDeliverToMe = () => {
+    console.log("Deliver To Me");
+  };
   return (
     <View style={styles.mainContainer}>
       <View style={{ flex: 1 }}></View>
@@ -24,6 +30,8 @@ const StartPage = ({ navigation }) => {
           <ButtonContainer
             Button1Title="Pickup Order"
             Button2Title="Deliver To Me"
+            onPressButton1={onPressPickUpOrder}
+            onPressButton2={onPressDeliverToMe}
           />
         </View>
       </View>

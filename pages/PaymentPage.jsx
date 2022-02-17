@@ -1,12 +1,18 @@
 import { StyleSheet, Text, View, Button } from "react-native";
 import ButtonContainer from "../containers/ButtonsContainer";
 import Circle from "../components/Circle";
+import { useEffect } from "react";
 import CustomLargeButton from "../components/CustomLargeButton";
 import { globalStyles } from "../styles/globalStyles";
-const PaymentPage = ({ navigation }) => {
+const PaymentPage = ({ route, navigation }) => {
   const onPressNextButton = () => {
-    navigation.navigate("Confirmation");
+    navigation.navigate("Confirmation", route.params);
   };
+  useEffect(() => {
+    console.log("payment Page");
+    console.log(route.params);
+  }, []);
+
   return (
     <View style={styles.mainContainer}>
       <View style={{ flex: 1 }}></View>

@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ButtonContainer from "../containers/ButtonsContainer";
 import TripleButtonsContainer from "../containers/TripleButtonContainer";
 import PaymentWithButton from "../components/PaymentWithButton";
@@ -8,6 +8,25 @@ const DetailsPage = ({ route, navigation }) => {
   const { title, price, image } = route.params;
   const [itemsCounter, setItemsCounter] = useState(1);
   const [newPrice, setNewPrice] = useState(price.toFixed(2));
+
+  const [data, setData] = useState({
+    price: newPrice,
+    quantity: itemsCounter,
+    meatTemperature: "Rare",
+    cheese: "Yes",
+    cheesePrice: 3.0,
+    image,
+    productName: title,
+    productCategory: "",
+  });
+
+  useEffect(() => {
+    setData((prevdata) => {
+      prevdata.price = newPrice;
+      prevdata.quantity = itemsCounter;
+      return prevdata;
+    });
+  }, [newPrice, itemsCounter]);
 
   const decreaseItemsCounter = () => {
     if (itemsCounter === 1) {
@@ -25,8 +44,44 @@ const DetailsPage = ({ route, navigation }) => {
       return (+prev + price).toFixed(2);
     });
   };
+
   const onPressCartButton = () => {
-    navigation.navigate("Cart");
+    navigation.navigate("Cart", data);
+  };
+  const onPressYes = () => {
+    console.log("Yes");
+    setData((prevdata) => {
+      prevdata.cheese = "Yes";
+      prevdata.cheesePrice = 3.0;
+      return prevdata;
+    });
+  };
+  const onPressNo = () => {
+    console.log("No");
+    setData((prevdata) => {
+      prevdata.cheese = "No";
+      prevdata.cheesePrice = 0.0;
+      return prevdata;
+    });
+  };
+
+  const onPressRare = () => {
+    setData((prevdata) => {
+      prevdata.meatTemperature = "Rare";
+      return prevdata;
+    });
+  };
+  const onPressMedium = () => {
+    setData((prevdata) => {
+      prevdata.meatTemperature = "Medium";
+      return prevdata;
+    });
+  };
+  const onPressWellDone = () => {
+    setData((prevdata) => {
+      prevdata.meatTemperature = "Well Done";
+      return prevdata;
+    });
   };
   return (
     <View style={styles.mainContainer}>
@@ -72,8 +127,11 @@ const DetailsPage = ({ route, navigation }) => {
         <View style={{ width: 335 }}>
           <TripleButtonsContainer
             Button1Title="Rare"
+            onPressButton1={onPressRare}
             Button2Title="Medium"
+            onPressButton2={onPressMedium}
             Button3Title="Well Done"
+            onPressButton3={onPressWellDone}
           />
         </View>
 
@@ -84,7 +142,12 @@ const DetailsPage = ({ route, navigation }) => {
 
         {/* DoubleButtonContainer  */}
         <View style={{ width: 335 }}>
-          <ButtonContainer Button1Title="Yes" Button2Title="No" />
+          <ButtonContainer
+            Button1Title="Yes"
+            Button2Title="No"
+            onPressButton1={onPressYes}
+            onPressButton2={onPressNo}
+          />
         </View>
       </View>
 

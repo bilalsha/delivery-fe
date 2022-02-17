@@ -1,26 +1,39 @@
 import { StyleSheet, Text, View, Image } from "react-native";
 import PaymentWithButton from "../components/PaymentWithButton";
+import { useEffect } from "react";
 import TextRow from "../components/TextRow";
 import { globalStyles } from "../styles/globalStyles";
-const CartPage = ({ navigation }) => {
+const CartPage = ({ route, navigation }) => {
   const onPressCartButton = () => {
-    navigation.navigate("Payment");
+    navigation.navigate("Payment", route.params);
   };
+  const { cheese, image, meatTemperature, productName, price, cheesePrice } =
+    route.params;
+
+  let subTotal = +price + cheesePrice;
+  let tax = 3.0;
+  let total = subTotal + tax;
+  useEffect(() => {
+    console.log(route.params);
+
+    console.log(total);
+    route.params.totalPrice = total;
+    console.log(route.params);
+  }, []);
   return (
     <View style={{ flex: 1 }}>
       {/* Top Card  */}
       <View style={styles.topCard}>
         <View style={styles.topCardContainer1}>
           <View style={styles.topCardImageContainer}>
-            <Image
-              source={require("../assets/images/cart.png")}
-              style={styles.imageStyle}
-            />
+            <Image source={image} style={styles.imageStyle} />
           </View>
           <View style={styles.topCardTextContainer}>
             <Text style={globalStyles.textProductCategory}>Entrees</Text>
-            <Text style={globalStyles.textProductName}>Extra Beef Burger</Text>
-            <Text style={globalStyles.textProductPrice}>$ 9.90</Text>
+            <Text style={globalStyles.textProductName}>{productName}</Text>
+            <Text style={globalStyles.textProductPrice}>
+              $ {route.params.price}
+            </Text>
           </View>
           <View style={styles.topCardCounterContainer}>
             <Text>Counter</Text>
@@ -31,10 +44,14 @@ const CartPage = ({ navigation }) => {
           <View style={{ flex: 2, marginTop: 10, marginBottom: 10 }}>
             <View style={styles.topCardTextContainer2}>
               <Text style={globalStyles.textProductName}>Cheese</Text>
-              <Text style={globalStyles.textProductPrice}>$ 3.00</Text>
+              <Text style={globalStyles.textProductPrice}>
+                $ {route.params.cheesePrice.toFixed(2)}
+              </Text>
             </View>
             <View style={styles.topCardTextContainer2}>
-              <Text style={globalStyles.textProductName}>Well Done</Text>
+              <Text style={globalStyles.textProductName}>
+                {meatTemperature}
+              </Text>
               <Text style={globalStyles.textProductPrice}>$ 0.00</Text>
             </View>
           </View>
@@ -45,18 +62,26 @@ const CartPage = ({ navigation }) => {
       </View>
       <View style={{ flex: 1 }}></View>
       <View style={styles.bottomCard}>
-        <TextRow title="Sub total" price="$ 12.80" customStyle={{}} />
+        <TextRow
+          title="Sub total"
+          price={`$ ${subTotal.toFixed(2)}`}
+          customStyle={{}}
+        />
         <TextRow
           title="Tax"
-          price="$ 3.00"
+          price={`$ ${tax.toFixed(2)}`}
           customStyle={styles.bottomCardBorderStyle}
         />
-        <TextRow title="Total" price="$ 15.80" customStyle={{}} />
+        <TextRow
+          title="Total"
+          price={`$ ${total.toFixed(2)}`}
+          customStyle={{}}
+        />
 
         <View style={styles.paymentWithButtonContainer}>
           <PaymentWithButton
             title="Select Payment"
-            price="15.80"
+            price={total.toFixed(2)}
             onPressButton={onPressCartButton}
           />
         </View>

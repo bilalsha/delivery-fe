@@ -34,45 +34,48 @@ const TripleButtonsContainer = (props) => {
     button3: false,
   });
 
-  const onPressButton1 = () => {
+  const onPressButton1 = (action) => {
     dispatchAcitveState({
       type: "BUTTON1_ACTIVE",
       valueButton1: true,
       valueButton2: false,
       valueButton3: false,
     });
+    action();
   };
-  const onPressButton2 = () => {
+  const onPressButton2 = (action) => {
     dispatchAcitveState({
       type: "BUTTON2_ACTIVE",
       valueButton1: false,
       valueButton2: true,
       valueButton3: false,
     });
+    action();
   };
-  const onPressButton3 = () => {
+  const onPressButton3 = (action) => {
     dispatchAcitveState({
       type: "BUTTON3_ACTIVE",
       valueButton1: false,
       valueButton2: false,
       valueButton3: true,
     });
+    action();
   };
 
   return (
     <View style={globalStyles.buttonContainer}>
       <CustomSmallButton
-        onPress={onPressButton1}
+        onPress={() => onPressButton1(props.onPressButton1)}
         buttonState={activeState.button1}
         ButtonTitle={props.Button1Title}
       />
       <CustomSmallButton
-        onPress={onPressButton2}
+        onPress={() => onPressButton2(props.onPressButton2)}
         buttonState={activeState.button2}
         ButtonTitle={props.Button2Title}
       />
       <CustomSmallButton
-        onPress={onPressButton3}
+        onPress={() => onPressButton3(props.onPressButton3)}
         buttonState={activeState.button3}
         ButtonTitle={props.Button3Title}
       />

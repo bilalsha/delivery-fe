@@ -32,17 +32,17 @@ const MenuPage = ({ navigation }) => {
     );
   };
 
-  const renderListData = ({ item }) => {
-    return (
-      <TouchableOpacity
-        style={styles.listWrapper}
-        onPress={() => loadDetails(item)}
-      >
-        <Image source={item.image} style={styles.listImage} />
-        <Text style={styles.listTitle}>{item.title}</Text>
-      </TouchableOpacity>
-    );
-  };
+  // const renderListData = ({ item }) => {
+  //   return (
+  //     <TouchableOpacity
+  //       style={styles.listWrapper}
+  //       onPress={() => loadDetails(item)}
+  //     >
+  //       <Image source={item.image} style={styles.listImage} />
+  //       <Text style={styles.listTitle}>{item.title}</Text>
+  //     </TouchableOpacity>
+  //   );
+  // };
 
   return (
     <View style={{ flex: 1 }}>
