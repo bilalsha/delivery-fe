@@ -15,11 +15,15 @@ const reducerFunction = (state, action) => {
     let quantity = state.quantity + 1;
     let subTotal = state.subTotal + state.singleItemPrice;
     let total = state.total + state.singleItemPrice;
+    let cheesePrice = state.cheesePrice;
+    let cheeseQuantity = state.cheeseQuantity;
     let singleItemPrice = state.singleItemPrice;
 
     return {
       price,
       quantity,
+      cheesePrice,
+      cheeseQuantity,
       subTotal,
       total,
       singleItemPrice,
@@ -34,6 +38,8 @@ const reducerFunction = (state, action) => {
       let subTotal = state.subTotal - state.singleItemPrice;
       let total = state.total - state.singleItemPrice;
       let singleItemPrice = state.singleItemPrice;
+      let cheesePrice = state.cheesePrice;
+      let cheeseQuantity = state.cheeseQuantity;
 
       return {
         price,
@@ -41,23 +47,67 @@ const reducerFunction = (state, action) => {
         subTotal,
         total,
         singleItemPrice,
+        cheesePrice,
+        cheeseQuantity,
+      };
+    }
+  }
+  if (action.type === "INC_CHEESE") {
+    let price = state.price;
+    let quantity = state.quantity;
+    let cheesePrice = state.cheesePrice + 3;
+    let cheeseQuantity = state.cheeseQuantity + 1;
+    let subTotal = state.subTotal + 3;
+    let total = state.total + 3;
+    let singleItemPrice = state.singleItemPrice;
+
+    return {
+      price,
+      quantity,
+      cheesePrice,
+      cheeseQuantity,
+      subTotal,
+      total,
+      singleItemPrice,
+    };
+  }
+  if (action.type === "DEC_CHEESE") {
+    if (state.cheeseQuantity === 0) {
+      return state;
+    } else {
+      let price = state.price;
+      let quantity = state.quantity;
+      let cheesePrice = state.cheesePrice - 3;
+      let cheeseQuantity = state.cheeseQuantity - 1;
+      let subTotal = state.subTotal - 3;
+      let total = state.total - 3;
+      let singleItemPrice = state.singleItemPrice;
+
+      return {
+        price,
+        quantity,
+        subTotal,
+        total,
+        singleItemPrice,
+        cheesePrice,
+        cheeseQuantity,
       };
     }
   }
 };
 
 const CartPage = ({ route, navigation }) => {
-  const onPressCartButton = () => {
+  const onPressPaymentButton = () => {
     navigation.navigate("Payment", route.params);
   };
   const {
-    cheese,
     image,
     meatTemperature,
     productName,
+    quantity,
     price,
     cheesePrice,
-    quantity,
+    cheeseQuantity,
   } = route.params;
   let tax = 3.0;
   let subTotal = +price + cheesePrice;
@@ -73,6 +123,8 @@ const CartPage = ({ route, navigation }) => {
     price: +price,
     quantity,
     subTotal,
+    cheesePrice,
+    cheeseQuantity,
     total,
     singleItemPrice,
   });
@@ -85,6 +137,8 @@ const CartPage = ({ route, navigation }) => {
     route.params.quantity = data.quantity;
     route.params.subTotal = data.subTotalb;
     route.params.totalPrice = data.total;
+    route.params.cheesePrice = data.cheesePrice;
+    route.params.cheeseQuantity = data.cheeseQuantity;
 
     console.log(route.params);
   }, [data]);
@@ -146,17 +200,23 @@ const CartPage = ({ route, navigation }) => {
         </View>
         <View style={styles.topCardContainer2}>
           <View style={{ flex: 1, marginRight: 10, marginBottom: 10 }}></View>
-          <View style={{ flex: 2, marginTop: 10, marginBottom: 10 }}>
-            <CartTextRow title="Cheese" price={cheesePrice} />
+          <View
+            style={{
+              flex: 2,
+              marginTop: 10,
+              marginBottom: 10,
+            }}
+          >
+            <CartTextRow title="Cheese" price={data.cheesePrice} />
             <CartTextRow title={meatTemperature} price={0.0} />
           </View>
           <View style={styles.topCardCounterContainer2}>
-            <Text>Counter</Text>
-            {/* <Counter
-              itemsCounter={data.quantity}
+            {/* <Text>Counter</Text> */}
+            <Counter
+              itemsCounter={data.cheeseQuantity}
               onPressPlus={increaseCheese}
               onPressMinus={decreaseCheese}
-            /> */}
+            />
           </View>
         </View>
       </Card>
@@ -183,7 +243,7 @@ const CartPage = ({ route, navigation }) => {
           <PaymentWithButton
             title="Select Payment"
             price={data.total.toFixed(2)}
-            onPressButton={onPressCartButton}
+            onPressButton={onPressPaymentButton}
           />
         </View>
       </View>
@@ -214,7 +274,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "center",
     flex: 1.5,
-    marginTop: 10,
+    marginTop: 6,
   },
 
   bottomCard: {

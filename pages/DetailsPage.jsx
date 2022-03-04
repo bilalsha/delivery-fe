@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import DoubleButtonComponent from "../components/DoubleButtonComponent";
 import TripleButtonComponent from "../components/TripleButtonComponent";
 import PaymentWithButton from "../components/PaymentWithButton";
-import Counter from "../components/Counter";
+import CounterDetailsPage from "../components/CounterDetailsPage.";
 
 const DetailsPage = ({ route, navigation }) => {
   const { title, price, image } = route.params;
@@ -15,6 +15,7 @@ const DetailsPage = ({ route, navigation }) => {
     quantity: itemsCounter,
     meatTemperature: "Rare",
     cheese: "Yes",
+    cheeseQuantity: 1,
     cheesePrice: 3.0,
     image,
     productName: title,
@@ -53,6 +54,7 @@ const DetailsPage = ({ route, navigation }) => {
     console.log("Yes");
     setData((prevdata) => {
       prevdata.cheese = "Yes";
+      prevdata.cheeseQuantity = 1;
       prevdata.cheesePrice = 3.0;
       return prevdata;
     });
@@ -62,6 +64,7 @@ const DetailsPage = ({ route, navigation }) => {
     setData((prevdata) => {
       prevdata.cheese = "No";
       prevdata.cheesePrice = 0.0;
+      prevdata.cheeseQuantity = 0;
       return prevdata;
     });
   };
@@ -97,7 +100,7 @@ const DetailsPage = ({ route, navigation }) => {
           <View style={{ width: 220 }}>
             <Text style={styles.itemName}>{title}</Text>
           </View>
-          <Counter
+          <CounterDetailsPage
             onPressPlus={increaseItemsCounter}
             onPressMinus={decreaseItemsCounter}
             itemsCounter={itemsCounter}
