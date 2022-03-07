@@ -1,8 +1,8 @@
-import { StyleSheet, Text, View } from "react-native";
-import { globalStyles } from "../styles/globalStyles";
+import { Text, View } from "react-native";
+import { globalStyles, stylesCartTextRow } from "../styles/globalStyles";
 const CartTextRow = (props) => {
   return (
-    <View style={styles.textContainer}>
+    <View style={stylesCartTextRow.textContainer}>
       <Text style={globalStyles.textProductName}>{props.title}</Text>
       <Text style={globalStyles.textProductPrice}>
         $ {props.price.toFixed(2)}
@@ -12,12 +12,3 @@ const CartTextRow = (props) => {
 };
 
 export default CartTextRow;
-
-const styles = StyleSheet.create({
-  textContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    flex: 1,
-  },
-});

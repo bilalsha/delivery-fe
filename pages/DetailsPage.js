@@ -1,9 +1,10 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
+import { Text, View, Image } from "react-native";
 import { useState, useEffect } from "react";
 import DoubleButtonComponent from "../components/DoubleButtonComponent";
 import TripleButtonComponent from "../components/TripleButtonComponent";
 import PaymentWithButton from "../components/PaymentWithButton";
 import CounterDetailsPage from "../components/CounterDetailsPage.";
+import { globalStyles, stylesDetailsPage } from "../styles/globalStyles";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -92,17 +93,17 @@ const DetailsPage = ({ route, navigation }) => {
     });
   };
   return (
-    <View style={styles.mainContainer}>
+    <View style={globalStyles.mainContainer}>
       {/* coverImage */}
-      <View style={styles.innerContainer}>
+      <View style={stylesDetailsPage.innerContainer}>
         <View>
-          <Image source={image} style={styles.coverImage} />
+          <Image source={image} style={stylesDetailsPage.coverImage} />
         </View>
 
         {/* Heading+Counter */}
-        <View style={styles.counterAndTextContainer}>
+        <View style={stylesDetailsPage.counterAndTextContainer}>
           <View style={{ width: wp("53%") }}>
-            <Text style={styles.itemName}>{title}</Text>
+            <Text style={stylesDetailsPage.itemName}>{title}</Text>
           </View>
           <CounterDetailsPage
             onPressPlus={increaseItemsCounter}
@@ -112,8 +113,8 @@ const DetailsPage = ({ route, navigation }) => {
         </View>
 
         {/* Heading */}
-        <View style={{ width: wp("81%") }}>
-          <Text style={styles.optionText}>Meat temperature</Text>
+        <View>
+          <Text style={stylesDetailsPage.optionText}>Meat temperature</Text>
         </View>
         {/* TripleButtonContainer  */}
 
@@ -128,7 +129,7 @@ const DetailsPage = ({ route, navigation }) => {
 
         {/* Heading  */}
         <View>
-          <Text style={styles.optionText}>Cheese</Text>
+          <Text style={stylesDetailsPage.optionText}>Cheese</Text>
         </View>
 
         {/* DoubleButtonContainer  */}
@@ -142,7 +143,7 @@ const DetailsPage = ({ route, navigation }) => {
       </View>
 
       {/* Price + Button  */}
-      <View style={styles.paymentWithButtonContainer}>
+      <View style={globalStyles.bottomButtonContainer}>
         <PaymentWithButton
           title="Add to Cart"
           price={newPrice}
@@ -154,43 +155,3 @@ const DetailsPage = ({ route, navigation }) => {
 };
 
 export default DetailsPage;
-
-const styles = StyleSheet.create({
-  mainContainer: {
-    flex: 1,
-    alignItems: "center",
-  },
-  innerContainer: {
-    flex: 3,
-    justifyContent: "space-between",
-    marginTop: 10,
-  },
-  coverImage: {
-    borderRadius: 15,
-    width: wp("81%"),
-    height: hp("24%"),
-  },
-  itemName: {
-    fontFamily: "Poppins600",
-    fontSize: wp("5.10%"),
-    fontStyle: "normal",
-  },
-  counterAndTextContainer: {
-    flexDirection: "row",
-    width: wp("81%"),
-    alignItems: "center",
-    justifyContent: "space-between",
-  },
-
-  optionText: {
-    fontFamily: "Poppins600",
-    fontSize: wp("3.40%"),
-  },
-
-  paymentWithButtonContainer: {
-    flex: 1,
-    justifyContent: "flex-end",
-    alignItems: "center",
-    marginBottom: 5,
-  },
-});

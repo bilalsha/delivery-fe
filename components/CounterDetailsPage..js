@@ -1,23 +1,21 @@
-import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
-import {
-  heightPercentageToDP as hp,
-  widthPercentageToDP as wp,
-} from "react-native-responsive-screen";
-
+import { View, Text, TouchableOpacity } from "react-native";
+import { stylesCounterDetailsPage } from "../styles/globalStyles";
 const CounterDetailsPage = (props) => {
   return (
-    <View style={styles.counterContainer}>
+    <View style={stylesCounterDetailsPage.counterContainer}>
       <TouchableOpacity onPress={props.onPressMinus} style={{ flex: 1 }}>
         <View>
-          <Text style={styles.counterText}>-</Text>
+          <Text style={stylesCounterDetailsPage.counterText}>-</Text>
         </View>
       </TouchableOpacity>
       <View style={{ flex: 1 }}>
-        <Text style={styles.counterText}>{props.itemsCounter}</Text>
+        <Text style={stylesCounterDetailsPage.counterText}>
+          {props.itemsCounter}
+        </Text>
       </View>
       <TouchableOpacity onPress={props.onPressPlus} style={{ flex: 1 }}>
         <View>
-          <Text style={styles.counterText}>+</Text>
+          <Text style={stylesCounterDetailsPage.counterText}>+</Text>
         </View>
       </TouchableOpacity>
     </View>
@@ -25,21 +23,3 @@ const CounterDetailsPage = (props) => {
 };
 
 export default CounterDetailsPage;
-
-const styles = StyleSheet.create({
-  counterContainer: {
-    width: wp("24%"),
-    height: hp("5.10%"),
-    backgroundColor: "#F2F2F2",
-    borderRadius: wp("2.91%"),
-    flexDirection: "row",
-    justifyContent: "space-evenly",
-    alignItems: "center",
-  },
-  counterText: {
-    fontFamily: "Poppins400",
-    fontSize: wp("4.37%"),
-    textAlign: "center",
-    color: "#828282",
-  },
-});

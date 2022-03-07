@@ -3,9 +3,8 @@ import { NavigationContainer } from "@react-navigation/native";
 import MainStack from "./routes/MainStack";
 import { useFonts } from "expo-font";
 import AppContext from "./store/App-Context";
-
-import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
-
+import { ApolloProvider } from "@apollo/client";
+import { Apollo_Client } from "./apollo-client/ApolloClient";
 export default function App() {
   const [loaded] = useFonts({
     Poppins400: require("./assets/fonts/Poppins-Regular.ttf"),
@@ -13,11 +12,7 @@ export default function App() {
     Poppins600: require("./assets/fonts/Poppins-SemiBold.ttf"),
   });
 
-  //TODO:wirte you machine ip address
-  const client = new ApolloClient({
-    uri: "http://{machine_IP_address}:5005/graphql",
-    cache: new InMemoryCache(),
-  });
+  const client = Apollo_Client();
 
   if (!loaded) {
     return null;

@@ -1,10 +1,11 @@
-import { StyleSheet, Text, View } from "react-native";
-import { heightPercentageToDP } from "react-native-responsive-screen";
-import { globalStyles } from "../styles/globalStyles";
+import { Text, View } from "react-native";
+import { globalStyles, stylesTextRow } from "../styles/globalStyles";
 
 const TextRow = (props) => {
   return (
-    <View style={{ ...styles.bottomCardTextContainer, ...props.customStyle }}>
+    <View
+      style={{ ...stylesTextRow.bottomCardTextContainer, ...props.customStyle }}
+    >
       <Text style={globalStyles.textHeadingSecondary}>{props.title}</Text>
       <Text style={globalStyles.textHeadingSecondary}>{props.price}</Text>
     </View>
@@ -12,13 +13,3 @@ const TextRow = (props) => {
 };
 
 export default TextRow;
-
-const styles = StyleSheet.create({
-  bottomCardTextContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginLeft: 20,
-    marginRight: 20,
-    marginTop: heightPercentageToDP("2.40%"),
-  },
-});

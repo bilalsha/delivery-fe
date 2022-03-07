@@ -1,23 +1,11 @@
-import { StyleSheet, View, Text } from "react-native";
-import {
-  heightPercentageToDP,
-  widthPercentageToDP,
-} from "react-native-responsive-screen";
-
+import { View } from "react-native";
+import { stylesCard } from "../styles/globalStyles";
 const Card = (props) => {
   return (
-    <View style={{ ...props.styles, ...styles.card }}>{props.children}</View>
+    <View style={{ ...props.styles, ...stylesCard.card }}>
+      {props.children}
+    </View>
   );
 };
 
 export default Card;
-
-const styles = StyleSheet.create({
-  card: {
-    marginHorizontal: widthPercentageToDP("4.13%"),
-    marginVertical: heightPercentageToDP("2.04%"),
-    borderRadius: 15,
-    borderWidth: 1,
-    borderColor: "#00000012",
-  },
-});

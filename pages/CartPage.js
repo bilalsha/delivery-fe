@@ -1,11 +1,11 @@
-import { StyleSheet, Text, View } from "react-native";
+import { View } from "react-native";
 import PaymentWithButton from "../components/PaymentWithButton";
-import { useState, useEffect, useReducer } from "react";
+import { useEffect, useReducer } from "react";
 import TextRow from "../components/TextRow";
 import Card from "../components/Card";
 import ImageComponent from "../components/ImageComponent";
 import CartDetail from "../components/CartDetail";
-import { globalStyles } from "../styles/globalStyles";
+import { globalStyles, stylesCartPage } from "../styles/globalStyles";
 import CartTextRow from "../components/CartTextRow";
 import Counter from "../components/Counter";
 import {
@@ -172,15 +172,15 @@ const CartPage = ({ route, navigation }) => {
   return (
     <View style={{ flex: 1 }}>
       {/* Top Card  */}
-      <Card styles={{ height: heightPercentageToDP("24%") }}>
-        <View style={styles.topCardContainer1}>
+      <Card styles={stylesCartPage.card}>
+        <View style={stylesCartPage.topCardContainer1}>
           <ImageComponent
             imageContainer={globalStyles.imageContainer}
             image={image}
             imageStyle={globalStyles.imageStyle}
           />
           <CartDetail productName={productName} price={data.price} />
-          <View style={styles.topCardCounterContainer}>
+          <View style={stylesCartPage.topCardCounterContainer1}>
             <Counter
               itemsCounter={data.quantity}
               onPressPlus={increaseItemsCounter}
@@ -188,20 +188,13 @@ const CartPage = ({ route, navigation }) => {
             />
           </View>
         </View>
-        <View style={styles.topCardContainer2}>
-          <View style={{ flex: 1, marginRight: 10, marginBottom: 10 }}></View>
-          <View
-            style={{
-              flex: 2,
-              marginTop: 10,
-              marginBottom: 10,
-            }}
-          >
+        <View style={stylesCartPage.topCardContainer2}>
+          <View style={stylesCartPage.emptyContainer}></View>
+          <View style={stylesCartPage.topCardPriceContainer}>
             <CartTextRow title="Cheese" price={data.cheesePrice} />
             <CartTextRow title={meatTemperature} price={0.0} />
           </View>
-          <View style={styles.topCardCounterContainer2}>
-            {/* <Text>Counter</Text> */}
+          <View style={stylesCartPage.topCardCounterContainer2}>
             <Counter
               itemsCounter={data.cheeseQuantity}
               onPressPlus={increaseCheese}
@@ -212,24 +205,15 @@ const CartPage = ({ route, navigation }) => {
       </Card>
       <View style={{ flex: 1 }}></View>
       {/* Bottom Card  */}
-      <View style={styles.bottomCard}>
-        <TextRow
-          title="Sub total"
-          price={`$ ${data.subTotal.toFixed(2)}`}
-          customStyle={{}}
-        />
+      <View style={stylesCartPage.bottomCard}>
+        <TextRow title="Sub total" price={`$ ${data.subTotal.toFixed(2)}`} />
         <TextRow
           title="Tax"
           price={`$ ${tax.toFixed(2)}`}
-          customStyle={styles.bottomCardBorderStyle}
+          customStyle={stylesCartPage.bottomCardBorderStyle}
         />
-        <TextRow
-          title="Total"
-          price={`$ ${data.total.toFixed(2)}`}
-          customStyle={{}}
-        />
-
-        <View style={styles.paymentWithButtonContainer}>
+        <TextRow title="Total" price={`$ ${data.total.toFixed(2)}`} />
+        <View style={globalStyles.bottomButtonContainer}>
           <PaymentWithButton
             title="Select Payment"
             price={data.total.toFixed(2)}
@@ -242,53 +226,4 @@ const CartPage = ({ route, navigation }) => {
 };
 
 export default CartPage;
-
-const styles = StyleSheet.create({
-  topCardContainer1: {
-    flex: 1,
-    margin: heightPercentageToDP("1.20%"),
-    flexDirection: "row",
-    justifyContent: "space-around",
-  },
-  topCardContainer2: {
-    flex: 1,
-    margin: heightPercentageToDP("1.20%"),
-    flexDirection: "row",
-  },
-  topCardCounterContainer: {
-    flex: 1.5,
-    justifyContent: "flex-end",
-    alignItems: "center",
-  },
-  topCardCounterContainer2: {
-    justifyContent: "flex-start",
-    alignItems: "center",
-    flex: 1.5,
-    marginTop: 6,
-  },
-
-  bottomCard: {
-    height: heightPercentageToDP("34%"),
-    borderTopColor: "#00000014",
-    borderTopWidth: 1,
-  },
-  bottomCardTextContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginLeft: 20,
-    marginRight: 20,
-    marginTop: heightPercentageToDP("2.40%"),
-  },
-  bottomCardBorderStyle: {
-    borderBottomColor: "#BDBDBD",
-    borderStyle: "dotted",
-    borderBottomWidth: 1,
-    paddingBottom: 10,
-  },
-  paymentWithButtonContainer: {
-    flex: 1,
-    justifyContent: "flex-end",
-    alignItems: "center",
-    marginBottom: 5,
-  },
-});
+// customStyle={{}}
