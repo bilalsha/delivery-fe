@@ -13,8 +13,9 @@ export default function App() {
     Poppins600: require("./assets/fonts/Poppins-SemiBold.ttf"),
   });
   // Initialize Apollo Client
+  TODO://wirte you machine ip address
   const client = new ApolloClient({
-    uri: "http://192.168.187.207:5005/graphql",
+    uri: "http://{machine_IP address}:5005/graphql",
     cache: new InMemoryCache(),
   });
 
