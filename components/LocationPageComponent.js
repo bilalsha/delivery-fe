@@ -1,7 +1,11 @@
-import { StyleSheet, Text, View, TextInput } from "react-native";
+import { Text, View, TextInput } from "react-native";
 import { useReducer, Fragment } from "react";
-import { globalStyles } from "../styles/globalStyles";
-import CustomMediumButton from "../components/CustomMediumButton";
+import {
+  globalStyles,
+  stylesLocationPageComponent,
+} from "../styles/globalStyles";
+import CustomMediumButton from "./CustomMediumButton";
+
 const ReducerFunction = (state, action) => {
   if (action.type === "BUTTON1_ACTIVE") {
     return {
@@ -19,7 +23,7 @@ const ReducerFunction = (state, action) => {
   }
 };
 
-const LocationPageContainer = (props) => {
+const LocationPageComponent = (props) => {
   const [activeState, dispatchAcitveState] = useReducer(ReducerFunction, {
     button1: true,
     button2: false,
@@ -59,15 +63,15 @@ const LocationPageContainer = (props) => {
           onPress={() => onPressButton2(props.onPressButton2)}
         />
       </View>
-      <View style={styles.textContainer}>
+      <View style={stylesLocationPageComponent.textContainer}>
         <Text style={globalStyles.textHeadingSecondary}>
           {activeState.text}
         </Text>
       </View>
-      <View style={styles.textInputContainer}>
+      <View style={stylesLocationPageComponent.textInputContainer}>
         <TextInput
           placeholder="24"
-          style={{ width: 121, height: 51, backgroundColor: "#F2F2F2" }}
+          style={stylesLocationPageComponent.textInput}
           textAlign={"center"}
           keyboardType="numeric"
         />
@@ -76,15 +80,4 @@ const LocationPageContainer = (props) => {
   );
 };
 
-export default LocationPageContainer;
-
-const styles = StyleSheet.create({
-  textContainer: {
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  textInputContainer: {
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
+export default LocationPageComponent;

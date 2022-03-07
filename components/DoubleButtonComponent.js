@@ -1,6 +1,6 @@
 import { View } from "react-native";
 import { useReducer } from "react";
-import CustomMediumButton from "../components/CustomMediumButton";
+import CustomMediumButton from "./CustomMediumButton";
 import { globalStyles } from "../styles/globalStyles";
 const ReducerFunction = (state, action) => {
   if (action.type === "BUTTON1_ACTIVE") {
@@ -11,7 +11,7 @@ const ReducerFunction = (state, action) => {
   }
 };
 
-const ButtonContainer = (props) => {
+const DoubleButtonComponent = (props) => {
   const [activeState, dispatchAcitveState] = useReducer(ReducerFunction, {
     button1: true,
     button2: false,
@@ -50,4 +50,4 @@ const ButtonContainer = (props) => {
   );
 };
 
-export default ButtonContainer;
+export default DoubleButtonComponent;

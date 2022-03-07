@@ -1,9 +1,11 @@
 import { View } from "react-native";
 import { useReducer } from "react";
-import CustomSmallButton from "../components/CustomSmallButton";
+import CustomSmallButton from "./CustomSmallButton";
 import { globalStyles } from "../styles/globalStyles";
 
 const ReducerFunction = (state, action) => {
+  console.log(state);
+  console.log(state.button1);
   if (action.type === "BUTTON1_ACTIVE") {
     return {
       button1: action.valueButton1,
@@ -27,7 +29,7 @@ const ReducerFunction = (state, action) => {
   }
 };
 
-const TripleButtonsContainer = (props) => {
+const TripleButtonComponent = (props) => {
   const [activeState, dispatchAcitveState] = useReducer(ReducerFunction, {
     button1: true,
     button2: false,
@@ -83,4 +85,4 @@ const TripleButtonsContainer = (props) => {
   );
 };
 
-export default TripleButtonsContainer;
+export default TripleButtonComponent;
