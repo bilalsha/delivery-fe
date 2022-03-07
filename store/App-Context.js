@@ -6,6 +6,62 @@ import {
   DrinksData,
   SidesData,
 } from "../data/MenuListData";
+
+import { gql } from "@apollo/client";
+import { useQuery } from "@apollo/client";
+
+const getBreakFastData = gql`
+  {
+    appetizers {
+      id
+      title
+      image
+      price
+    }
+  }
+`;
+
+const getAppetizersData = gql`
+  {
+    breakfast {
+      id
+      title
+      image
+      price
+    }
+  }
+`;
+const getEntreesData = gql`
+  {
+    drinks {
+      id
+      title
+      image
+      price
+    }
+  }
+`;
+const getDrinksData = gql`
+  {
+    sides {
+      id
+      title
+      image
+      price
+    }
+  }
+`;
+const getSidesData = gql`
+  {
+    entrees {
+      id
+      title
+      image
+      price
+    }
+  }
+`;
+
 export const Context = createContext({
   menuData: "",
   changeMenuData: (title) => {},
@@ -45,6 +101,7 @@ const AppContext = (props) => {
   });
   // const [menuData, setMenuData] = useState(BreakFastData);
   // const [activeIconColor, setActiceIconColor] = useState(true);
+
   const changeMenuData = (title) => {
     if (title === "Break Fast") {
       // setMenuData(BreakFastData);

@@ -1,4 +1,8 @@
 import { StyleSheet, View, Text } from "react-native";
+import {
+  heightPercentageToDP,
+  widthPercentageToDP,
+} from "react-native-responsive-screen";
 
 const Card = (props) => {
   return (
@@ -10,7 +14,8 @@ export default Card;
 
 const styles = StyleSheet.create({
   card: {
-    margin: 15,
+    marginHorizontal: widthPercentageToDP("4.13%"),
+    marginVertical: heightPercentageToDP("2.04%"),
     borderRadius: 15,
     borderWidth: 1,
     borderColor: "#00000012",

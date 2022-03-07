@@ -3,6 +3,11 @@ import CustomLargeButton from "../components/CustomLargeButton";
 import DoubleButtonComponent from "../components/DoubleButtonComponent";
 import Circle from "../components/Circle";
 import { globalStyles } from "../styles/globalStyles";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
+
 const StartPage = ({ navigation }) => {
   const onPressCustomButton = () => {
     navigation.navigate("Location");
@@ -15,7 +20,6 @@ const StartPage = ({ navigation }) => {
   };
   return (
     <View style={styles.mainContainer}>
-      <View style={{ flex: 1 }}></View>
       <View style={globalStyles.innerContainer}>
         <View style={globalStyles.locationIcon}>
           <Circle />
@@ -25,8 +29,7 @@ const StartPage = ({ navigation }) => {
             Are you picking up your order? Or should we deliver it to you?
           </Text>
         </View>
-
-        <View style={{ width: 335 }}>
+        <View style={styles.doubleButtonComponent}>
           <DoubleButtonComponent
             Button1Title="Pickup Order"
             Button2Title="Deliver To Me"
@@ -51,14 +54,19 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     backgroundColor: "#FFFFFF",
   },
+  doubleButtonComponent: {
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: hp("4.80%"),
+  },
 
   textContainer: {
-    width: 352,
+    width: wp("86%"),
+    marginTop: hp("2.52%"),
     alignItems: "flex-start",
   },
   buttonContainer: {
-    // width: 335,
-    flex: 2,
+    // flex: 1,
     justifyContent: "flex-end",
     alignItems: "center",
   },

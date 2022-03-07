@@ -5,6 +5,10 @@ import Card from "../components/Card";
 import HeadingCard from "../components/HeadingCard";
 import ImageComponent from "../components/ImageComponent";
 import CartTextRow from "../components/CartTextRow";
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from "react-native-responsive-screen";
 const ConfirmationPage = ({ route, navigation }) => {
   const {
     productName,
@@ -29,14 +33,14 @@ const ConfirmationPage = ({ route, navigation }) => {
           color="#828282"
         />
       </View>
-      <View style={{ alignItems: "center" }}>
-        <Card styles={styles.Card}>
+      <View style={styles.container2}>
+        <Card styles={styles.card}>
           <ImageComponent
             imageContainer={globalStyles.imageContainer}
             image={image}
             imageStyle={globalStyles.imageStyle}
           />
-          <View style={{ flex: 3, paddingRight: 10 }}>
+          <View style={styles.cardTextContainer}>
             <View style={styles.textRow1}>
               <Text style={globalStyles.textProductCategory}>Entrees</Text>
             </View>
@@ -46,13 +50,13 @@ const ConfirmationPage = ({ route, navigation }) => {
           </View>
         </Card>
       </View>
-      <View style={styles.totalAmountCard}>
+      <View style={styles.container3}>
         <Text style={globalStyles.textHeadingSecondary}>Amount paid</Text>
         <Text style={globalStyles.textFinalAmount}>
           $ {totalPrice.toFixed(2)}
         </Text>
       </View>
-      <View style={styles.bottomCard}>
+      <View style={styles.container4}>
         <View style={styles.bottomCardText}>
           <Text style={globalStyles.textProductPrice}>Your order number</Text>
           <Text style={globalStyles.textOrderNumber}>1553</Text>
@@ -68,18 +72,27 @@ const ConfirmationPage = ({ route, navigation }) => {
 export default ConfirmationPage;
 
 const styles = StyleSheet.create({
-  topCard: {
-    // margin: 15,
-    width: 335,
-    borderRadius: 15,
-    borderWidth: 1,
-    borderColor: "#00000012",
+  container1: {
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: hp("2.88%"),
   },
-
-  bottomCard: {
-    height: 250,
+  container2: {
+    alignItems: "center",
+  },
+  container3: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  container4: {
+    height: hp("30%"),
     borderTopColor: "#00000014",
     borderTopWidth: 1,
+  },
+  cardTextContainer: {
+    flex: 3,
+    paddingRight: wp("2.43%"),
   },
   bottomCardText: {
     flex: 3,
@@ -91,24 +104,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flex: 1,
   },
-  container1: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
+
   textRow1: {
     justifyContent: "flex-start",
     flex: 1,
     flexDirection: "row",
     alignItems: "flex-end",
   },
-  Card: {
-    height: 118,
+  card: {
+    height: hp("14.18%"),
     flexDirection: "row",
-  },
-  totalAmountCard: {
-    flex: 1.5,
-    justifyContent: "center",
-    alignItems: "center",
   },
 });

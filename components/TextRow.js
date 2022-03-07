@@ -1,4 +1,5 @@
 import { StyleSheet, Text, View } from "react-native";
+import { heightPercentageToDP } from "react-native-responsive-screen";
 import { globalStyles } from "../styles/globalStyles";
 
 const TextRow = (props) => {
@@ -18,6 +19,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     marginLeft: 20,
     marginRight: 20,
-    marginTop: 20,
+    marginTop: heightPercentageToDP("2.40%"),
   },
 });

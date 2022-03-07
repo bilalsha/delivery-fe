@@ -8,11 +8,30 @@ import {
   ScrollView,
 } from "react-native";
 
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
+
 import { useContext } from "react";
 import { Context } from "../store/App-Context";
 import { MenuIconsData } from "../data/MenuIconsData";
-// import TabNavigator from "../routes/TabNavigator";
+
+import { gql } from "@apollo/client";
+import { useQuery } from "@apollo/client";
+
+const getMenuIcons = gql`
+  {
+    menuIcons {
+      id
+      title
+      image
+      isSelected
+    }
+  }
+`;
 const MenuPage = ({ navigation }) => {
+  const { loading, error, data } = useQuery(getMenuIcons);
   const { menuData, changeMenuData } = useContext(Context);
   const loadDetails = (item) => {
     navigation.navigate("Details", item);
@@ -24,7 +43,7 @@ const MenuPage = ({ navigation }) => {
         onPress={() => changeMenuData(item.title)}
       >
         <Image
-          source={item.image}
+          source={require("../assets/images/menuPage/breakfast.png")}
           style={{ tintColor: "grey", ...styles.iconImage }}
         />
         <Text style={styles.iconTitle}>{item.title}</Text>
@@ -32,40 +51,34 @@ const MenuPage = ({ navigation }) => {
     );
   };
 
-  // const renderListData = ({ item }) => {
-  //   return (
-  //     <TouchableOpacity
-  //       style={styles.listWrapper}
-  //       onPress={() => loadDetails(item)}
-  //     >
-  //       <Image source={item.image} style={styles.listImage} />
-  //       <Text style={styles.listTitle}>{item.title}</Text>
-  //     </TouchableOpacity>
-  //   );
-  // };
+  if (loading) {
+    return (
+      <View>
+        <Text> Loading...</Text>
+      </View>
+    );
+  }
 
+  if (error) {
+    console.log(error);
+    return (
+      <View>
+        <Text>Error...</Text>
+      </View>
+    );
+  }
   return (
     <View style={{ flex: 1 }}>
       <View style={styles.iconsContainer}>
         <FlatList
           keyExtractor={(item) => item.id}
-          data={MenuIconsData}
+          data={data.menuIcons}
           renderItem={renderIcon}
           horizontal
           showsHorizontalScrollIndicator={false}
         />
       </View>
 
-      {/*Menu Icons*/}
-
-      {/*Menu List*/}
-      {/* <View style={styles.listContainer}>
-        <FlatList
-          keyExtractor={(item) => item.id}
-          data={menuData}
-          renderItem={renderListData}
-        />
-      </View> */}
       <ScrollView>
         <View style={styles.listContainer}>
           {menuData.map((item) => {
@@ -110,10 +123,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
 
-  // listContainer: {
-  //   flex: 1,
-  //   alignItems: "center",
-  // },
   listContainer: {
     flexDirection: "row",
     flexWrap: "wrap",
@@ -128,8 +137,8 @@ const styles = StyleSheet.create({
     marginLeft: 15,
   },
   listImage: {
-    width: 167,
-    height: 177,
+    width: wp("41%"),
+    height: hp("21%"),
     borderRadius: 12,
   },
   listTitle: {

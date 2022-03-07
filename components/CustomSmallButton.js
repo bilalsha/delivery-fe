@@ -1,4 +1,8 @@
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from "react-native-responsive-screen";
 const CustomSmallButton = (props) => {
   return (
     <TouchableOpacity onPress={props.onPress}>
@@ -24,14 +28,14 @@ export default CustomSmallButton;
 
 const styles = StyleSheet.create({
   Button: {
-    width: 100,
-    height: 33,
+    width: wp("24%"),
+    height: wp("8%"),
     borderRadius: 9,
     alignItems: "center",
     justifyContent: "center",
   },
   textButton: {
-    fontSize: 11,
+    fontSize: wp("2.70%"),
     fontFamily: "Poppins400",
     textAlign: "center",
     fontStyle: "normal",

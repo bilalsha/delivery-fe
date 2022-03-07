@@ -8,6 +8,10 @@ import CartDetail from "../components/CartDetail";
 import { globalStyles } from "../styles/globalStyles";
 import CartTextRow from "../components/CartTextRow";
 import Counter from "../components/Counter";
+import {
+  heightPercentageToDP,
+  widthPercentageToDP,
+} from "react-native-responsive-screen";
 
 const reducerFunction = (state, action) => {
   if (action.type === "INC") {
@@ -165,24 +169,10 @@ const CartPage = ({ route, navigation }) => {
     });
   };
 
-  // setData((prevData) => {
-  //   let singleItemPrice = +price / quantity;
-  //   console.log(singleItemPrice);
-  //   console.log(prevData.quantity);
-  //   prevData.price = prevData.price + singleItemPrice;
-  //   prevData.quantity = prevData.quantity + 1;
-  //   prevData.subTotal = prevData.subTotal + singleItemPrice;
-  //   prevData.total = prevData.total + singleItemPrice;
-  //   console.log("Inside");
-  //   console.log(prevData);
-  //   let newData = prevData;
-  //   return newData;
-  // });
-
   return (
     <View style={{ flex: 1 }}>
       {/* Top Card  */}
-      <Card styles={{ height: 200 }}>
+      <Card styles={{ height: heightPercentageToDP("24%") }}>
         <View style={styles.topCardContainer1}>
           <ImageComponent
             imageContainer={globalStyles.imageContainer}
@@ -256,13 +246,13 @@ export default CartPage;
 const styles = StyleSheet.create({
   topCardContainer1: {
     flex: 1,
-    margin: 10,
+    margin: heightPercentageToDP("1.20%"),
     flexDirection: "row",
     justifyContent: "space-around",
   },
   topCardContainer2: {
     flex: 1,
-    margin: 10,
+    margin: heightPercentageToDP("1.20%"),
     flexDirection: "row",
   },
   topCardCounterContainer: {
@@ -278,7 +268,7 @@ const styles = StyleSheet.create({
   },
 
   bottomCard: {
-    height: 250,
+    height: heightPercentageToDP("30%"),
     borderTopColor: "#00000014",
     borderTopWidth: 1,
   },
@@ -287,7 +277,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     marginLeft: 20,
     marginRight: 20,
-    marginTop: 20,
+    marginTop: heightPercentageToDP("2.40%"),
   },
   bottomCardNone: {},
   bottomCardBorderStyle: {
@@ -300,5 +290,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "flex-end",
     alignItems: "center",
+    marginBottom: 5,
   },
 });

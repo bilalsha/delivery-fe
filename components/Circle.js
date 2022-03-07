@@ -1,4 +1,5 @@
 import { StyleSheet, View } from "react-native";
+import { widthPercentageToDP } from "react-native-responsive-screen";
 import EvilIcons from "react-native-vector-icons/EvilIcons";
 EvilIcons.loadFont();
 
@@ -16,8 +17,8 @@ const styles = StyleSheet.create({
   circle: {
     backgroundColor: "#EE4137",
     borderRadius: 50,
-    height: 52,
-    width: 52,
+    height: widthPercentageToDP("12.63%"),
+    width: widthPercentageToDP("12.63%"),
     alignItems: "center",
     justifyContent: "center",
   },

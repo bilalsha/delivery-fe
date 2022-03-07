@@ -1,34 +1,38 @@
 import { StyleSheet } from "react-native";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 
 export const globalStyles = StyleSheet.create({
   textHeading: {
     fontFamily: "Poppins400",
-    fontSize: 21,
+    fontSize: wp("5.12%"),
     textAlign: "center",
     fontStyle: "normal",
   },
   textHeadingSecondary: {
     fontFamily: "Poppins400",
-    fontSize: 15,
+    fontSize: wp("3.64%"),
     textAlign: "center",
     fontStyle: "normal",
   },
   textButton: {
     fontFamily: "Poppins500",
-    fontSize: 15,
+    fontSize: wp("3.64%"),
     textAlign: "center",
     color: "#FFFFFF",
     fontStyle: "normal",
   },
   ButtonContainer: {
-    width: 153,
-    height: 33,
+    width: wp("35%"),
+    height: wp("8%"),
     borderRadius: 9,
     alignItems: "center",
     justifyContent: "center",
   },
   textButtonContainer: {
-    fontSize: 11,
+    fontSize: wp("2.67%"),
     fontFamily: "Poppins400",
     textAlign: "center",
     fontStyle: "normal",
@@ -36,45 +40,46 @@ export const globalStyles = StyleSheet.create({
   textProductCategory: {
     fontFamily: "Poppins400",
     color: "#EE4137",
-    fontSize: 12,
+    fontSize: wp("2.91%"),
     fontStyle: "normal",
   },
   textProductName: {
     fontFamily: "Poppins500",
-    fontSize: 12,
+    fontSize: wp("2.91%"),
     fontStyle: "normal",
   },
   textProductPrice: {
     fontFamily: "Poppins400",
-    fontSize: 18,
+    fontSize: wp("4.37%"),
     fontStyle: "normal",
   },
   innerContainer: {
-    flex: 2,
+    // flex: 2,
     justifyContent: "space-between",
   },
   locationIcon: {
-    width: 335,
+    width: wp("81%"),
     alignItems: "center",
+    marginTop: hp("16.81%"),
   },
   buttonContainer: {
     flexDirection: "row",
     justifyContent: "space-evenly",
     alignItems: "center",
     backgroundColor: "#F2F2F2",
-    width: 335,
-    height: 50,
+    width: wp("81%"),
+    height: wp("12.39%"),
     borderRadius: 15,
   },
   textOrderNumber: {
     fontFamily: "Poppins400",
     color: "#333333",
-    fontSize: 24,
+    fontSize: wp("5.83%"),
     fontStyle: "normal",
   },
   textFinalAmount: {
     fontFamily: "Poppins600",
-    fontSize: 15,
+    fontSize: wp("3.64%"),
     textAlign: "center",
     color: "#EE4137",
     fontStyle: "normal",
@@ -84,11 +89,11 @@ export const globalStyles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "flex-end",
     alignItems: "center",
-    marginRight: 10,
+    marginRight: wp("2.43%"),
   },
   imageStyle: {
-    height: 65,
-    width: 60,
+    height: wp("15.78%"),
+    width: wp("14.56%"),
     borderRadius: 12,
   },
 });

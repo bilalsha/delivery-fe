@@ -1,4 +1,8 @@
 import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from "react-native-responsive-screen";
 
 const CounterDetailsPage = (props) => {
   return (
@@ -24,17 +28,17 @@ export default CounterDetailsPage;
 
 const styles = StyleSheet.create({
   counterContainer: {
-    width: 100,
-    height: 42,
+    width: wp("24%"),
+    height: hp("5.10%"),
     backgroundColor: "#F2F2F2",
-    borderRadius: 12,
+    borderRadius: wp("2.91%"),
     flexDirection: "row",
     justifyContent: "space-evenly",
     alignItems: "center",
   },
   counterText: {
     fontFamily: "Poppins400",
-    fontSize: 18,
+    fontSize: wp("4.37%"),
     textAlign: "center",
     color: "#828282",
   },

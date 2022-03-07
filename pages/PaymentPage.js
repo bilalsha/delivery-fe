@@ -4,6 +4,10 @@ import Circle from "../components/Circle";
 import { useEffect } from "react";
 import CustomLargeButton from "../components/CustomLargeButton";
 import { globalStyles } from "../styles/globalStyles";
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from "react-native-responsive-screen";
 const PaymentPage = ({ route, navigation }) => {
   const onPressNextButton = () => {
     navigation.navigate("Confirmation", route.params);
@@ -21,7 +25,6 @@ const PaymentPage = ({ route, navigation }) => {
 
   return (
     <View style={styles.mainContainer}>
-      <View style={{ flex: 1 }}></View>
       <View style={styles.innerContainer}>
         <View style={globalStyles.locationIcon}>
           <Circle />
@@ -32,7 +35,7 @@ const PaymentPage = ({ route, navigation }) => {
             credit card?
           </Text>
         </View>
-        <View>
+        <View style={styles.doubleButtonContiner}>
           <DoubleButtonComponent
             Button1Title="Pay Now"
             Button2Title="Charge Member Balance"
@@ -41,7 +44,7 @@ const PaymentPage = ({ route, navigation }) => {
           />
         </View>
       </View>
-      <View style={styles.buttonContainer}>
+      <View style={styles.bottomButtonContainer}>
         <CustomLargeButton title="Next" onPressButton={onPressNextButton} />
       </View>
     </View>
@@ -57,15 +60,19 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   innerContainer: {
-    flex: 2,
     justifyContent: "space-between",
   },
   textContainer: {
-    width: 352,
+    width: wp("85.64%"),
     alignItems: "flex-start",
+    marginTop: hp("2.88%"),
   },
-  buttonContainer: {
-    flex: 1.5,
+  doubleButtonContiner: {
+    marginTop: hp("6%"),
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  bottomButtonContainer: {
     justifyContent: "flex-end",
     alignItems: "center",
   },

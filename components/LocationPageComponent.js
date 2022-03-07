@@ -1,7 +1,12 @@
 import { StyleSheet, Text, View, TextInput } from "react-native";
 import { useReducer, Fragment } from "react";
 import { globalStyles } from "../styles/globalStyles";
-import CustomMediumButton from "../components/CustomMediumButton";
+import CustomMediumButton from "./CustomMediumButton";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+  heightPercentageToDP,
+} from "react-native-responsive-screen";
 const ReducerFunction = (state, action) => {
   if (action.type === "BUTTON1_ACTIVE") {
     return {
@@ -67,7 +72,11 @@ const LocationPageComponent = (props) => {
       <View style={styles.textInputContainer}>
         <TextInput
           placeholder="24"
-          style={{ width: 121, height: 51, backgroundColor: "#F2F2F2" }}
+          style={{
+            width: wp("30%"),
+            height: hp("6%"),
+            backgroundColor: "#F2F2F2",
+          }}
           textAlign={"center"}
           keyboardType="numeric"
         />
@@ -82,9 +91,11 @@ const styles = StyleSheet.create({
   textContainer: {
     alignItems: "center",
     justifyContent: "center",
+    marginTop: heightPercentageToDP("4.20%"),
   },
   textInputContainer: {
     alignItems: "center",
     justifyContent: "center",
+    marginTop: heightPercentageToDP("3.0%"),
   },
 });

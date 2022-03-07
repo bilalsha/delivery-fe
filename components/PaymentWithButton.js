@@ -1,5 +1,9 @@
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { globalStyles } from "../styles/globalStyles";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 const PaymentWithButton = (props) => {
   return (
     <View style={styles.container}>
@@ -20,15 +24,15 @@ export default PaymentWithButton;
 
 const styles = StyleSheet.create({
   container: {
-    width: 335,
-    height: 50,
+    width: wp("81%"),
+    height: hp("6.10%"),
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
   },
   button: {
-    width: 217,
-    height: 50,
+    width: wp("52%"),
+    height: hp("6.10%"),
     alignItems: "center",
     backgroundColor: "#EE4137",
     justifyContent: "center",
@@ -36,11 +40,11 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: "#FFFFFF",
-    fontSize: 15,
+    fontSize: wp("3.64%"),
   },
   priceText: {
     fontFamily: "Poppins500",
-    fontSize: 24,
+    fontSize: wp("5.83%"),
     color: "#333333",
   },
 });

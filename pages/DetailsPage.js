@@ -4,6 +4,10 @@ import DoubleButtonComponent from "../components/DoubleButtonComponent";
 import TripleButtonComponent from "../components/TripleButtonComponent";
 import PaymentWithButton from "../components/PaymentWithButton";
 import CounterDetailsPage from "../components/CounterDetailsPage.";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 
 const DetailsPage = ({ route, navigation }) => {
   const { title, price, image } = route.params;
@@ -91,13 +95,13 @@ const DetailsPage = ({ route, navigation }) => {
     <View style={styles.mainContainer}>
       {/* coverImage */}
       <View style={styles.innerContainer}>
-        <View style={{ width: 335 }}>
+        <View>
           <Image source={image} style={styles.coverImage} />
         </View>
 
         {/* Heading+Counter */}
         <View style={styles.counterAndTextContainer}>
-          <View style={{ width: 220 }}>
+          <View style={{ width: wp("53%") }}>
             <Text style={styles.itemName}>{title}</Text>
           </View>
           <CounterDetailsPage
@@ -108,20 +112,19 @@ const DetailsPage = ({ route, navigation }) => {
         </View>
 
         {/* Heading */}
-        <View style={{ width: 335 }}>
+        <View style={{ width: wp("81%") }}>
           <Text style={styles.optionText}>Meat temperature</Text>
         </View>
         {/* TripleButtonContainer  */}
-        <View style={{ width: 335 }}>
-          <TripleButtonComponent
-            Button1Title="Rare"
-            onPressButton1={onPressRare}
-            Button2Title="Medium"
-            onPressButton2={onPressMedium}
-            Button3Title="Well Done"
-            onPressButton3={onPressWellDone}
-          />
-        </View>
+
+        <TripleButtonComponent
+          Button1Title="Rare"
+          onPressButton1={onPressRare}
+          Button2Title="Medium"
+          onPressButton2={onPressMedium}
+          Button3Title="Well Done"
+          onPressButton3={onPressWellDone}
+        />
 
         {/* Heading  */}
         <View>
@@ -129,14 +132,13 @@ const DetailsPage = ({ route, navigation }) => {
         </View>
 
         {/* DoubleButtonContainer  */}
-        <View style={{ width: 335 }}>
-          <DoubleButtonComponent
-            Button1Title="Yes"
-            Button2Title="No"
-            onPressButton1={onPressYes}
-            onPressButton2={onPressNo}
-          />
-        </View>
+
+        <DoubleButtonComponent
+          Button1Title="Yes"
+          Button2Title="No"
+          onPressButton1={onPressYes}
+          onPressButton2={onPressNo}
+        />
       </View>
 
       {/* Price + Button  */}
@@ -165,28 +167,30 @@ const styles = StyleSheet.create({
   },
   coverImage: {
     borderRadius: 15,
-    width: 335,
+    width: wp("81%"),
+    height: hp("24%"),
   },
   itemName: {
     fontFamily: "Poppins600",
-    fontSize: 21,
+    fontSize: wp("5.10%"),
     fontStyle: "normal",
   },
   counterAndTextContainer: {
     flexDirection: "row",
-    width: 335,
+    width: wp("81%"),
     alignItems: "center",
     justifyContent: "space-between",
   },
 
   optionText: {
     fontFamily: "Poppins600",
-    fontSize: 14,
+    fontSize: wp("3.40%"),
   },
 
   paymentWithButtonContainer: {
     flex: 1,
     justifyContent: "flex-end",
     alignItems: "center",
+    marginBottom: 5,
   },
 });

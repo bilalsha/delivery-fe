@@ -3,6 +3,10 @@ import Circle from "../components/Circle";
 import CustomLargeButton from "../components/CustomLargeButton";
 import { globalStyles } from "../styles/globalStyles";
 import LocationPageComponent from "../components/LocationPageComponent";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 const LocationPage = ({ navigation }) => {
   const onPressCustomButton = () => {
     navigation.navigate("Menu");
@@ -16,22 +20,22 @@ const LocationPage = ({ navigation }) => {
   };
   return (
     <View style={styles.mainContainer}>
-      <View style={{ flex: 1 }}></View>
       <View style={styles.innerContainer}>
         <View style={globalStyles.locationIcon}>
           <Circle />
         </View>
 
-        <View style={{ width: 335 }}>
+        <View style={styles.textContainer}>
           <Text style={globalStyles.textHeading}>Where are you?</Text>
         </View>
-
-        <LocationPageComponent
-          Button1Title="Cart Number"
-          Button2Title="Hole Number"
-          onPressButton1={onPressCartNumber}
-          onPressButton2={onPressHoleNumber}
-        />
+        <View style={{ marginTop: hp("5%") }}>
+          <LocationPageComponent
+            Button1Title="Cart Number"
+            Button2Title="Hole Number"
+            onPressButton1={onPressCartNumber}
+            onPressButton2={onPressHoleNumber}
+          />
+        </View>
       </View>
 
       <View style={styles.buttonContainer}>
@@ -50,8 +54,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
   },
   innerContainer: {
-    flex: 2,
+    // flex: 2,
     justifyContent: "space-between",
+  },
+  textContainer: {
+    width: wp("81%"),
+    marginTop: hp("3.96%"),
   },
   buttonContainer: {
     alignItems: "center",
