@@ -12,10 +12,10 @@ export default function App() {
     Poppins500: require("./assets/fonts/Poppins-Medium.ttf"),
     Poppins600: require("./assets/fonts/Poppins-SemiBold.ttf"),
   });
-  // Initialize Apollo Client
-  TODO://wirte you machine ip address
+
+  //TODO:wirte you machine ip address
   const client = new ApolloClient({
-    uri: "http://{machine_IP address}:5005/graphql",
+    uri: "http://{machine_IP_address}:5005/graphql",
     cache: new InMemoryCache(),
   });
 
