@@ -268,7 +268,7 @@ const styles = StyleSheet.create({
   },
 
   bottomCard: {
-    height: heightPercentageToDP("30%"),
+    height: heightPercentageToDP("34%"),
     borderTopColor: "#00000014",
     borderTopWidth: 1,
   },
@@ -279,7 +279,6 @@ const styles = StyleSheet.create({
     marginRight: 20,
     marginTop: heightPercentageToDP("2.40%"),
   },
-  bottomCardNone: {},
   bottomCardBorderStyle: {
     borderBottomColor: "#BDBDBD",
     borderStyle: "dotted",

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, ScrollView } from "react-native";
 import Circle from "../components/Circle";
 import CustomLargeButton from "../components/CustomLargeButton";
 import { globalStyles } from "../styles/globalStyles";
@@ -20,23 +20,25 @@ const LocationPage = ({ navigation }) => {
   };
   return (
     <View style={styles.mainContainer}>
-      <View style={styles.innerContainer}>
-        <View style={globalStyles.locationIcon}>
-          <Circle />
-        </View>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <View style={styles.innerContainer}>
+          <View style={globalStyles.locationIcon}>
+            <Circle />
+          </View>
 
-        <View style={styles.textContainer}>
-          <Text style={globalStyles.textHeading}>Where are you?</Text>
+          <View style={styles.textContainer}>
+            <Text style={globalStyles.textHeading}>Where are you?</Text>
+          </View>
+          <View style={{ marginTop: hp("5%") }}>
+            <LocationPageComponent
+              Button1Title="Cart Number"
+              Button2Title="Hole Number"
+              onPressButton1={onPressCartNumber}
+              onPressButton2={onPressHoleNumber}
+            />
+          </View>
         </View>
-        <View style={{ marginTop: hp("5%") }}>
-          <LocationPageComponent
-            Button1Title="Cart Number"
-            Button2Title="Hole Number"
-            onPressButton1={onPressCartNumber}
-            onPressButton2={onPressHoleNumber}
-          />
-        </View>
-      </View>
+      </ScrollView>
 
       <View style={styles.buttonContainer}>
         <CustomLargeButton title="Next" onPressButton={onPressCustomButton} />
